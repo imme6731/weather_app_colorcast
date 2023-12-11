@@ -1,70 +1,98 @@
-# Getting Started with Create React App
+## 제작의도
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+하늘상태에 따라 아이콘과 배경색을 다르게 표현하여 한눈에 현재 날씨를 확인할 수 있게 구성한다.
+당일 시간별 기온과 날시 상태를 를 확인할 수 있게 아이콘과 수치로 표현하여 구성한다.
+일주일간의 예측 날씨와 최저최고기온을 표시해 앞으로의 날씨를 확인할 수 있게 구성한다.
+메뉴에서 상세 날씨상태를 확인할 수 있게 습도, 대기오염, 풍속 등의 메뉴를 만들어 시간별로 볼 수 있게 구성한다.
+(추가 논의사항 : 위치별 즐겨찾기, 위성지도 메뉴)
 
-## Available Scripts
+## 설치항목
 
-In the project directory, you can run:
+- [x] styled-components
+- [x] react-router-dom
+- [x] styled-reset
+- [] 폼 관련
+- [] 타이틑 관련
+- [] 폰트어썸
+- [] swiper
 
-### `npm start`
+## todo
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### 12월 11일
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- [] 디자인 기획 컨펌 및 수정
+- [x] 리액트 초기셋팅
+- [x] router 설정
+- [] header, footer 컴포넌트 제작
+- [] api 설정
 
-### `npm test`
+### 12월 12일
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+[Home]
 
-### `npm run build`
+- [] 전체적인 UI 구성
+- [] main api 설정
+- [] 날씨별 icon 설정
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### 12월 13일
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+[Home]
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- [] 시간별 api 설정
+- [] 요일별 api 설정
+- [] 배경색상 case 설정
 
-### `npm run eject`
+### 12월 14일
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+[Menu]
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- [] 전체적인 UI 구성
+- [] 이벤트 작업
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+[습도], [대기오염], [풍향/풍속]
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- [] 전체적인 UI 구성
 
-## Learn More
+### 12월 15일
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+[습도]
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- [] main api 설정
+- [] 시간별 api 설정
 
-### Code Splitting
+### 12월 16일
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+[대기오염]
 
-### Analyzing the Bundle Size
+- [] main api 설정
+- [] 시간별 api 설정
+- [] 배경색상 case 설정
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### 12월 17일
 
-### Making a Progressive Web App
+[풍향/풍속]
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+- [] main api 설정
+- [] 시간별 api 설정
 
-### Advanced Configuration
+### 12월 18일
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+- [] 스플래쉬 UI 제작
+- [] 404 UI 제작
+- [] helmet 구성
+- [] 디테일 작업
 
-### Deployment
+### 12월 19일
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+- [] 전체적인 검토
+- [] 배포 테스트 1차
 
-### `npm run build` fails to minify
+### 12월 20일
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- [] 최종 검토
+- [] 배포 테스트 2차
+- [] 작업 마무리
+
+## new
+
+## problem
