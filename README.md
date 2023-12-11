@@ -11,9 +11,9 @@
 - [x] styled-components
 - [x] react-router-dom
 - [x] styled-reset
-- [] 폼 관련
+- [x] node-fetch@2
 - [] 타이틑 관련
-- [] 폰트어썸
+- [x] 폰트어썸
 - [] swiper
 
 ## todo
