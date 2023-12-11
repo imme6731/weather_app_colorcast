@@ -23,7 +23,7 @@
 - [] 디자인 기획 컨펌 및 수정
 - [x] 리액트 초기셋팅
 - [x] router 설정
-- [] header, footer 컴포넌트 제작
+- [x] header, footer 컴포넌트 제작
 - [] api 설정
 
 ### 12월 12일

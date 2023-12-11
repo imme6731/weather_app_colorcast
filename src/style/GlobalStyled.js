@@ -14,9 +14,12 @@ body{
     margin: 0 auto;
     color: white;
     font-family: 'Noto Sans KR', sans-serif;
-    width: 100%;
     overflow-x: hidden;
     overflow-y: scroll;
+  
+    & #root{
+        background-color: lightpink;
+    }
 }
 
 ul, li{
