@@ -20,24 +20,23 @@
 
 ### 12월 11일
 
-- [] 디자인 기획 컨펌 및 수정
 - [x] 리액트 초기셋팅
 - [x] router 설정
 - [x] header, footer 컴포넌트 제작
-- [] api 설정
+- [x] api 설정
 
 ### 12월 12일
 
 [Home]
 
-- [] 전체적인 UI 구성
-- [] main api 설정
-- [] 날씨별 icon 설정
+- [x] 전체적인 UI 구성
+- [x] main api 설정
 
 ### 12월 13일
 
 [Home]
 
+- [x] 날씨별 icon 설정
 - [] 시간별 api 설정
 - [] 요일별 api 설정
 - [] 배경색상 case 설정
