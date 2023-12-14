@@ -70,8 +70,9 @@ export const Home = () => {
       try {
         setIsLoading(false);
 
-        const regeo = await reverseGeo(lat, lon);
-        setGeo(regeo);
+        const { documents } = await reverseGeo(lat, lon);
+        setGeo(documents[0]);
+
         // 역지오코딩
 
         const { response: today } = await getUltraWeather(rs.x, rs.y);
@@ -158,11 +159,7 @@ export const Home = () => {
           {getUltraWeather && (
             <Wrap>
               <Main>
-                {geo && (
-                  <Location>
-                    {geo.city} {geo.locality}
-                  </Location>
-                )}
+                {geo && <Location>{geo.address_name}</Location>}
                 <Sky>{skyVal()}</Sky>
                 <SkyIcon src={skyIconVal()}></SkyIcon>
                 <Temp>{tem}°</Temp>

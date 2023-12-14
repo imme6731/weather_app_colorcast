@@ -12,6 +12,14 @@ const options = {
   method: "GET",
 };
 
+const geoOptions = {
+  headers: {
+    Accept: "application / json",
+    Authorization: `KakaoAK da34782ab3bcd9ca03254a6944ee2688`,
+  },
+  method: "GET",
+};
+
 const now = new Date();
 const year = now.getFullYear().toString();
 const month = now.getMonth() + 1;
@@ -47,7 +55,7 @@ export const getWeather = (x, y) =>
 
 export const reverseGeo = (x, y) =>
   fetch(
-    `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${x}&longitude=${y}&localityLanguage=ko`,
-    options
+    `https://dapi.kakao.com/v2/local/geo/coord2regioncode.json?input_coord=WGS84&output_coord=WGS84&x=${y}&y=${x}`,
+    geoOptions
   ).then((res) => res.json());
 // 역지오코딩 (지역주소 추출)
