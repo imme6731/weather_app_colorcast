@@ -2,11 +2,10 @@ import { styled } from "styled-components";
 
 export const Wrap = styled.div`
   width: 100%;
-  height: 100vh;
+  padding: 30px 15px;
 `;
 export const Main = styled.div`
   width: 100%;
-  padding: 0 15px;
   margin-bottom: 40px;
   display: flex;
   flex-direction: column;

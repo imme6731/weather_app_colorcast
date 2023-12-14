@@ -4,7 +4,7 @@ import { styled } from "styled-components";
 
 const Wrap = styled.div`
   width: 100%;
-  padding: 40px 15px;
+  padding: 20px 15px;
 `;
 const Bar = styled.div`
   font-size: 22px;

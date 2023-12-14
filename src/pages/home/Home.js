@@ -18,11 +18,44 @@ import {
   UpTemp,
   DownTemp,
 } from "./style/MainStyled";
+import { styled } from "styled-components";
+
+const Section01 = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+`;
+const Air = styled.div`
+  width: 48%;
+  height: 80px;
+  background-color: rgba(256, 256, 256, 0.4);
+  border-radius: 15px;
+`;
+const Wind = styled.div`
+  width: 48%;
+  height: 80px;
+  background-color: rgba(256, 256, 256, 0.4);
+  border-radius: 15px;
+`;
+
+const Section02 = styled.div`
+  width: 100%;
+  height: 140px;
+  background-color: rgba(256, 256, 256, 0.4);
+  border-radius: 15px;
+  margin-bottom: 30px;
+`;
+const Section03 = styled.div`
+  width: 100%;
+  height: 400px;
+  background-color: rgba(256, 256, 256, 0.4);
+  border-radius: 15px;
+`;
 
 export const Home = () => {
   const { lat, lon } = useCurrentLocation();
   const rs = dfs_xy_conv("toXY", lat, lon);
-  // console.log(rs);
 
   const [isLoading, setIsLoading] = useState(true);
   const [geo, setGeo] = useState();
@@ -36,34 +69,36 @@ export const Home = () => {
     (async () => {
       try {
         setIsLoading(false);
+
         const regeo = await reverseGeo(lat, lon);
         setGeo(regeo);
         // 역지오코딩
 
         const { response: today } = await getUltraWeather(rs.x, rs.y);
         const todaySky = today?.body?.items?.item
-          ?.filter((x) => x.category === "SKY")
+          .filter((x) => x.category === "SKY")
           .map((x) => x);
         setSky(todaySky[0]?.fcstValue);
         const todayPTY = today?.body?.items?.item
-          ?.filter((x) => x.category === "PTY")
+          .filter((x) => x.category === "PTY")
           .map((x) => x);
         setRain(todayPTY[0]?.fcstValue);
         const todayT1H = today?.body?.items?.item
-          ?.filter((x) => x.category === "T1H")
+          .filter((x) => x.category === "T1H")
           .map((x) => x);
         setTem(todayT1H[0]?.fcstValue);
         // 초단기예보
 
         const { response: short } = await getWeather(rs.x, rs.y);
         const todayTMX = short?.body?.items?.item
-          ?.filter((x) => x.category === "TMX")
+          .filter((x) => x.category === "TMX")
           .map((x) => x);
         setTmx(todayTMX);
         const todayTMN = short?.body?.items?.item
-          ?.filter((x) => x.category === "TMN")
+          .filter((x) => x.category === "TMN")
           .map((x) => x);
         setTmn(todayTMN);
+        // 단기예보
       } catch (error) {
         console.log("error : " + error);
       }
@@ -120,7 +155,7 @@ export const Home = () => {
         "...loading"
       ) : (
         <>
-          {getWeather && (
+          {getUltraWeather && (
             <Wrap>
               <Main>
                 {geo && (
@@ -136,6 +171,15 @@ export const Home = () => {
                   <DownTemp>최저 : {tmnVal}°</DownTemp>
                 </TempUpDown>
               </Main>
+
+              <Section01>
+                <Air></Air>
+                <Wind></Wind>
+              </Section01>
+
+              <Section02></Section02>
+
+              <Section03></Section03>
             </Wrap>
           )}
         </>
