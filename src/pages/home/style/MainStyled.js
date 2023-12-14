@@ -4,7 +4,7 @@ export const Wrap = styled.div`
   width: 100%;
   padding: 30px 15px;
 `;
-export const Main = styled.div`
+export const SMain = styled.div`
   width: 100%;
   margin-bottom: 40px;
   display: flex;
@@ -15,6 +15,9 @@ export const Location = styled.h3`
   font-size: 30px;
   font-weight: 500;
   margin-bottom: 20px;
+  line-height: 1.2;
+  text-align: center;
+  word-break: keep-all;
 `;
 export const Sky = styled.p`
   font-size: 20px;

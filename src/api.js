@@ -39,6 +39,14 @@ const time = () => {
   }
 };
 
+const tmFc = () => {
+  if (now.getHours() < "6") {
+    return year + month + (date - 1);
+  } else if (now.getHours() >= "6") {
+    return year + month + date;
+  }
+};
+
 export const getUltraWeather = (x, y) =>
   fetch(
     `${baseUrl}/getUltraSrtFcst?serviceKey=${serviceKey}&pageNo=1&numOfRows=1000&dataType=JSON&base_date=${base_date}&base_time=${time()}&nx=${x}&ny=${y}`,
@@ -59,3 +67,17 @@ export const reverseGeo = (x, y) =>
     geoOptions
   ).then((res) => res.json());
 // 역지오코딩 (지역주소 추출)
+
+export const getMidWeather = () =>
+  fetch(
+    `https://apis.data.go.kr/1360000/MidFcstInfoService/getMidTa?serviceKey=${serviceKey}&pageNo=1&numOfRows=10&dataType=JSON&regId=11H20201&tmFc=${tmFc()}0600`,
+    options
+  ).then((res) => res.json());
+//중기예보 기온
+
+export const getMidSky = () =>
+  fetch(
+    `https://apis.data.go.kr/1360000/MidFcstInfoService/getMidLandFcst?serviceKey=${serviceKey}&pageNo=1&numOfRows=10&dataType=JSON&regId=11H20000&tmFc=${tmFc()}0600`,
+    options
+  ).then((res) => res.json());
+//중기예보 육상
