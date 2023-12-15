@@ -98,6 +98,8 @@
 
 ## problem
 
-- home main >> 네트워크에서 패치함수 계속 호출됨
+- home main >> 네트워크에서 패치함수 계속 호출됨 => home useeffect의 [] 안에 rs를 넣어서 발생한 문제, rs.x, rs.y로 입력하면 됨
+- api : fetch 에러 => 카카오로 바꾸고 오류 안남
+
 - home main >> json 문법에러
-- api : fetch 에러
+- useCurrentLocation이 처음 랜더링 될때 default 값으로 호출됨

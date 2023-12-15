@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import {
+  after1day,
+  after2day,
   base_date,
   getMidSky,
   getMidWeather,
@@ -45,6 +47,10 @@ export const Home = () => {
   const [wsd, setWsd] = useState();
   const [mid, setMid] = useState();
   const [mSky, setMSky] = useState();
+  const [after1sky, setAfter1sky] = useState();
+  const [after1pty, setAfter1pty] = useState();
+  const [after2sky, setAfter2sky] = useState();
+  const [after2pty, setAfter2pty] = useState();
 
   useEffect(() => {
     (async () => {
@@ -72,11 +78,11 @@ export const Home = () => {
         const todayVEC = today?.body?.items?.item
           .filter((x) => x.category === "VEC")
           .map((x) => x);
-        setVec(todayVEC[0]?.fcstValue);
+        setVec(todayVEC?.[0]?.fcstValue);
         const todayWSD = today?.body?.items?.item
           .filter((x) => x.category === "WSD")
           .map((x) => x);
-        setWsd(todayWSD[0].fcstValue);
+        setWsd(todayWSD?.[0].fcstValue);
         // 초단기예보
 
         const { response: short } = await getWeather(rs.x, rs.y);
@@ -88,6 +94,34 @@ export const Home = () => {
           .filter((x) => x.category === "TMN")
           .map((x) => x);
         setTmn(todayTMN);
+        const after1daySky = short?.body?.items?.item
+          .filter(
+            (x) =>
+              x.category === "SKY" &&
+              x.fcstDate === after1day &&
+              x.fcstTime === "1300"
+          )
+          .map((x) => x.fcstValue);
+        const after1dayPty = short?.body?.items?.item
+          .filter(
+            (x) =>
+              x.category === "PTY" &&
+              x.fcstDate === after1day &&
+              x.fcstTime === "1300"
+          )
+          .map((x) => x.fcstValue);
+        const after2daySky = short?.body?.items?.item
+          .filter((x) => x.category === "SKY" && x.fcstDate === after2day)
+          .map((x) => x.fcstValue);
+        const after2dayPty = short?.body?.items?.item
+          .filter((x) => x.category === "PTY" && x.fcstDate === after2day)
+          .map((x) => x.fcstValue);
+
+        setAfter1sky(after1daySky?.[0]);
+        setAfter1pty(after1dayPty?.[0]);
+        setAfter2sky(after2daySky?.[0]);
+        setAfter2pty(after2dayPty?.[0]);
+
         // 단기예보
 
         const { response: midweather } = await getMidWeather();
@@ -104,9 +138,9 @@ export const Home = () => {
   const timeMap = sky?.map((x) => x?.fcstTime.slice(0, 2));
   const skyMap = sky?.map((x) => x?.fcstValue);
   const rainMap = rain?.map((x) => x?.fcstValue);
-
   const nowSky = sky?.[0]?.fcstValue;
   const nowRain = rain?.[0]?.fcstValue;
+
   const skyVal = (rainRes, skyRes) => {
     if (rainRes === "0") {
       if (skyRes === "1") {
@@ -246,7 +280,18 @@ export const Home = () => {
                 tt={tem}
               />
 
-              <Section3 mI={midIcon} mS={mSky} mm={mid} />
+              <Section3
+                mI={midIcon}
+                mS={mSky}
+                mm={mid}
+                mx={tmx}
+                mn={tmn}
+                siv={skyIconVal}
+                a1p={after1pty}
+                a1s={after1sky}
+                a2p={after2pty}
+                a2s={after2sky}
+              />
             </Wrap>
           )}
         </>

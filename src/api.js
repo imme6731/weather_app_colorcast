@@ -27,7 +27,8 @@ const date = now.getDate();
 const hours = ("0" + now.getHours()).slice(-2);
 const minutes = ("0" + now.getMinutes()).slice(-2);
 export const base_date = year + month + date;
-const date_start = year + month + (date - 1);
+export const after1day = year + month + (date + 1);
+export const after2day = year + month + (date + 2);
 
 const time = () => {
   if (minutes > "30") {
@@ -39,7 +40,7 @@ const time = () => {
   }
 };
 
-const tmFc = () => {
+export const tmFc = () => {
   if (now.getHours() < "6") {
     return year + month + (date - 1);
   } else if (now.getHours() >= "6") {
@@ -56,7 +57,7 @@ export const getUltraWeather = (x, y) =>
 
 export const getWeather = (x, y) =>
   fetch(
-    `${baseUrl}/getVilageFcst?serviceKey=${serviceKey}&pageNo=1&numOfRows=1000&dataType=JSON&base_date=${date_start}&base_time=0500&nx=${x}&ny=${y}`,
+    `${baseUrl}/getVilageFcst?serviceKey=${serviceKey}&pageNo=1&numOfRows=1000&dataType=JSON&base_date=${tmFc()}&base_time=0500&nx=${x}&ny=${y}`,
     options
   ).then((res) => res.json());
 // 단기예보

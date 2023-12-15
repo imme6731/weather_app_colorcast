@@ -27,7 +27,6 @@ export const Sky = styled.p`
 export const SkyIcon = styled.img`
   width: 140px;
   height: 140px;
-  filter: drop-shadow(0 5px 6px #888888);
   margin-bottom: 30px;
 `;
 export const Temp = styled.h3`

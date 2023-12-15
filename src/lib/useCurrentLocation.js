@@ -1,11 +1,8 @@
 import { useEffect, useState } from "react";
 
 export const useCurrentLocation = () => {
-  const defaultLat = 35;
-  const defaultLon = 127;
-
-  const [lat, setLat] = useState(defaultLat);
-  const [lon, setLon] = useState(defaultLon);
+  const [lat, setLat] = useState();
+  const [lon, setLon] = useState();
 
   const location = (pos) => {
     const {

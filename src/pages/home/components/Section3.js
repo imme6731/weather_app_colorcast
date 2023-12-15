@@ -32,7 +32,9 @@ const SIcon = styled.img`
   height: 40px;
 `;
 const TEMP = styled.div`
+  width: 80px;
   display: flex;
+  justify-content: flex-end;
 `;
 const Max = styled.div`
   font-size: 18px;
@@ -44,7 +46,7 @@ const Min = styled.div`
   margin-left: 15px;
 `;
 
-export const Section3 = ({ mI, mS, mm }) => {
+export const Section3 = ({ mI, mS, mm, mx, mn, siv, a1p, a1s, a2p, a2s }) => {
   const now = new Date();
   const week = [
     "일요일",
@@ -69,9 +71,6 @@ export const Section3 = ({ mI, mS, mm }) => {
   const dayOfWeek = (n) => {
     return week[day(n)];
   };
-  // console.log(now.getDay());
-  // console.log(day(9));
-  // console.log(dayOfWeek(9));
 
   return (
     <Section03>
@@ -79,6 +78,22 @@ export const Section3 = ({ mI, mS, mm }) => {
         <h3>일별 예보</h3>
       </Title>
       <ConWrap>
+        <Con>
+          <Day>{dayOfWeek(1)}</Day>
+          <SIcon src={siv(a1p, a1s)} />
+          <TEMP>
+            <Max>{Math.round(mx?.[1]?.fcstValue)}°</Max>
+            <Min>{Math.round(mn?.[0]?.fcstValue)}°</Min>
+          </TEMP>
+        </Con>
+        <Con>
+          <Day>{dayOfWeek(2)}</Day>
+          <SIcon src={siv(a2p, a2s)} />
+          <TEMP>
+            <Max>{Math.round(mx?.[2]?.fcstValue)}°</Max>
+            <Min>{Math.round(mn?.[1]?.fcstValue)}°</Min>
+          </TEMP>
+        </Con>
         <Con>
           <Day>{dayOfWeek(3)}</Day>
           <SIcon src={mI(mS?.wf3Pm)} />
@@ -117,22 +132,6 @@ export const Section3 = ({ mI, mS, mm }) => {
           <TEMP>
             <Max>{mm?.taMax7}°</Max>
             <Min>{mm?.taMin7}°</Min>
-          </TEMP>
-        </Con>
-        <Con>
-          <Day>{dayOfWeek(8)}</Day>
-          <SIcon src={mI(mS?.wf8)} />
-          <TEMP>
-            <Max>{mm?.taMax8}°</Max>
-            <Min>{mm?.taMin8}°</Min>
-          </TEMP>
-        </Con>
-        <Con>
-          <Day>{dayOfWeek(9)}</Day>
-          <SIcon src={mI(mS?.wf9)} />
-          <TEMP>
-            <Max>{mm?.taMax9}°</Max>
-            <Min>{mm?.taMin9}°</Min>
           </TEMP>
         </Con>
       </ConWrap>

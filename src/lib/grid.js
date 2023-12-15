@@ -31,6 +31,7 @@ export const dfs_xy_conv = (code, v1, v2) => {
   var ro = Math.tan(Math.PI * 0.25 + olat * 0.5);
   ro = (re * sf) / Math.pow(ro, sn);
   var rs = {};
+  // eslint-disable-next-line
   if (code == "toXY") {
     rs["lat"] = v1;
     rs["lng"] = v2;
