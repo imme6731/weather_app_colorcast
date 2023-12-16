@@ -59,9 +59,9 @@ export const Section3 = ({ mI, mS, mm, mx, mn, siv, a1p, a1s, a2p, a2s }) => {
   ];
 
   const day = (n) => {
-    if (now.getDay() + n < 6) {
+    if (now.getDay() + n <= 6) {
       return now.getDay() + n;
-    } else if (now.getDay() + n >= 6 && now.getDay() + n < 14) {
+    } else if (now.getDay() + n > 6 && now.getDay() + n < 14) {
       return now.getDay() + n - 7;
     } else if (now.getDay() + n >= 14) {
       return now.getDay() + n - 14;

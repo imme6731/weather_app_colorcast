@@ -3,8 +3,11 @@ import {
   after1day,
   after2day,
   base_date,
+  getDust,
   getMidSky,
   getMidWeather,
+  getNearbyDust,
+  getTmDust,
   getUltraWeather,
   getWeather,
   reverseGeo,
@@ -17,11 +20,12 @@ import snowIcon from "../../assets/img/snow_1.png";
 import { useCurrentLocation } from "../../lib/useCurrentLocation";
 import { dfs_xy_conv } from "../../lib/grid";
 import { Wrap } from "./style/MainStyled";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFaceLaughSquint } from "@fortawesome/free-regular-svg-icons";
-import { Section2 } from "./components/Section2";
-import { Main } from "./components/Main";
-import { Section3 } from "./components/Section3";
+import {
+  faFaceDizzy,
+  faFaceFrown,
+  faFaceLaughSquint,
+  faFaceSmile,
+} from "@fortawesome/free-regular-svg-icons";
 import {
   Section01,
   Air,
@@ -31,6 +35,10 @@ import {
   Direction,
   Speed,
 } from "./style/Section01Styled";
+import { Section2 } from "./components/Section2";
+import { Main } from "./components/Main";
+import { Section3 } from "./components/Section3";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export const Home = () => {
   const { lat, lon } = useCurrentLocation();
@@ -51,6 +59,12 @@ export const Home = () => {
   const [after1pty, setAfter1pty] = useState();
   const [after2sky, setAfter2sky] = useState();
   const [after2pty, setAfter2pty] = useState();
+  const [tmRes, setTmRes] = useState();
+  const [stationVal, setStationVal] = useState();
+  const [pm10Rank, setPm10Rank] = useState();
+
+  const tmXVal = tmRes?.tmX;
+  const tmYVal = tmRes?.tmY;
 
   useEffect(() => {
     (async () => {
@@ -61,6 +75,19 @@ export const Home = () => {
         setGeo(documents[0]);
 
         // 역지오코딩
+
+        const { response: tmVal } = await getTmDust(
+          documents[0]?.region_3depth_name
+        );
+        setTmRes(tmVal?.body?.items?.[0]);
+
+        const { response: stationRes } = await getNearbyDust(tmXVal, tmYVal);
+        setStationVal(stationRes?.body?.items?.[0]?.stationName);
+
+        const { response: dust } = await getDust(stationVal);
+        setPm10Rank(dust?.body?.items?.[0]?.pm10Grade);
+
+        // 대기오염
 
         const { response: today } = await getUltraWeather(rs.x, rs.y);
         const todaySky = today?.body?.items?.item
@@ -133,7 +160,7 @@ export const Home = () => {
         console.log("error : " + error);
       }
     })();
-  }, [lat, lon, rs.x, rs.y]);
+  }, [lat, lon, rs.x, rs.y, stationVal, tmXVal, tmYVal]);
 
   const timeMap = sky?.map((x) => x?.fcstTime.slice(0, 2));
   const skyMap = sky?.map((x) => x?.fcstValue);
@@ -229,6 +256,30 @@ export const Home = () => {
     }
   };
 
+  const dustIcon = () => {
+    if (pm10Rank === "1") {
+      return faFaceLaughSquint;
+    } else if (pm10Rank === "2") {
+      return faFaceSmile;
+    } else if (pm10Rank === "3") {
+      return faFaceFrown;
+    } else if (pm10Rank === "4") {
+      return faFaceDizzy;
+    }
+  };
+
+  const dustTxt = () => {
+    if (pm10Rank === "1") {
+      return "좋음";
+    } else if (pm10Rank === "2") {
+      return "보통";
+    } else if (pm10Rank === "3") {
+      return "나쁨";
+    } else if (pm10Rank === "4") {
+      return "매우 나쁨";
+    }
+  };
+
   return (
     <>
       {isLoading ? (
@@ -247,14 +298,15 @@ export const Home = () => {
                 tX={tmxVal}
                 tN={tmnVal}
               />
+
               <Section01>
                 <Air>
                   <Icon>
-                    <FontAwesomeIcon icon={faFaceLaughSquint} />
+                    {dustIcon() && <FontAwesomeIcon icon={dustIcon()} />}
                   </Icon>
                   <TxtBox>
                     <p>미세먼지</p>
-                    <h3>좋음</h3>
+                    <h3>{dustTxt()}</h3>
                   </TxtBox>
                 </Air>
                 <Wind>

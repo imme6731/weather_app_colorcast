@@ -82,3 +82,24 @@ export const getMidSky = () =>
     options
   ).then((res) => res.json());
 //중기예보 육상
+
+export const getTmDust = (geoName) =>
+  fetch(
+    `https://apis.data.go.kr/B552584/MsrstnInfoInqireSvc/getTMStdrCrdnt?serviceKey=${serviceKey}&returnType=JSON&numOfRows=100&pageNo=1&umdName=${geoName}`,
+    options
+  ).then((res) => res.json());
+//현재위치 tm 좌표 구하기
+
+export const getNearbyDust = (tmX, tmY) =>
+  fetch(
+    `https://apis.data.go.kr/B552584/MsrstnInfoInqireSvc/getNearbyMsrstnList?serviceKey=${serviceKey}&returnType=JSON&tmX=${tmX}&tmY=${tmY}&ver=1.1`,
+    options
+  ).then((res) => res.json());
+//현재위치 근처 대기오염 측정소 찾기
+
+export const getDust = (stationName) =>
+  fetch(
+    `https://apis.data.go.kr/B552584/ArpltnInforInqireSvc/getMsrstnAcctoRltmMesureDnsty?serviceKey=${serviceKey}&returnType=JSON&numOfRows=100&pageNo=1&stationName=${stationName}&dataTerm=DAILY&ver=1.3`,
+    options
+  ).then((res) => res.json());
+//현재위치 근처 대기오염 측정소 찾기
