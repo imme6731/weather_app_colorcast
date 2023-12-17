@@ -48,6 +48,14 @@ export const tmFc = () => {
   }
 };
 
+export const tmFcPre = () => {
+  if (now.getHours() < "6") {
+    return year + month + (date - 2);
+  } else if (now.getHours() >= "6") {
+    return year + month + (date - 1);
+  }
+};
+
 export const getUltraWeather = (x, y) =>
   fetch(
     `${baseUrl}/getUltraSrtFcst?serviceKey=${serviceKey}&pageNo=1&numOfRows=1000&dataType=JSON&base_date=${base_date}&base_time=${time()}&nx=${x}&ny=${y}`,
@@ -57,7 +65,7 @@ export const getUltraWeather = (x, y) =>
 
 export const getWeather = (x, y) =>
   fetch(
-    `${baseUrl}/getVilageFcst?serviceKey=${serviceKey}&pageNo=1&numOfRows=1000&dataType=JSON&base_date=${tmFc()}&base_time=0500&nx=${x}&ny=${y}`,
+    `${baseUrl}/getVilageFcst?serviceKey=${serviceKey}&pageNo=1&numOfRows=1000&dataType=JSON&base_date=${tmFc()}&base_time=0200&nx=${x}&ny=${y}`,
     options
   ).then((res) => res.json());
 // 단기예보

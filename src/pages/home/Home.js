@@ -239,7 +239,7 @@ export const Home = () => {
     .map((x) => Math.round(x.fcstValue));
 
   const tmnVal = tmn
-    ?.filter((x) => x.fcstDate === base_date)
+    ?.filter((x) => x.fcstDate === after1day)
     .map((x) => Math.round(x.fcstValue));
 
   const midIcon = (mm) => {
