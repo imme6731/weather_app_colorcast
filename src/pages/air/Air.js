@@ -41,6 +41,7 @@ export const Air = () => {
   const [geo, setGeo] = useState();
   const [tmRes, setTmRes] = useState();
   const [stationVal, setStationVal] = useState();
+  const [pm10Rank, setPm10Rank] = useState();
   const [dustVal, setDustVal] = useState();
 
   const tmXVal = tmRes?.tmX;
@@ -66,34 +67,35 @@ export const Air = () => {
 
         const { response: dust } = await getDust(stationVal);
         setDustVal(dust?.body?.items?.[0]);
+        setPm10Rank(dust?.body?.items?.[0]?.pm10Grade);
       } catch (error) {
         console.log("error : " + error);
       }
     })();
-  }, [lat, lon, rs.x, rs.y]);
+  }, [lat, lon, rs.x, rs.y, stationVal, tmXVal, tmYVal]);
 
   const dateVal = `${year}-${month}-${date} ${hour}:00`;
 
   const dustIcon = () => {
-    if (dustVal.pm10Grade === "1") {
+    if (pm10Rank === "1") {
       return faFaceLaughSquint;
-    } else if (dustVal.pm10Grade === "2") {
+    } else if (pm10Rank === "2") {
       return faFaceSmile;
-    } else if (dustVal.pm10Grade === "3") {
+    } else if (pm10Rank === "3") {
       return faFaceFrown;
-    } else if (dustVal.pm10Grade === "4") {
+    } else if (pm10Rank === "4") {
       return faFaceDizzy;
     }
   };
 
   const dustTxt = () => {
-    if (dustVal.pm10Grade === "1") {
+    if (pm10Rank === "1") {
       return "좋음";
-    } else if (dustVal.pm10Grade === "2") {
+    } else if (pm10Rank === "2") {
       return "보통";
-    } else if (dustVal.pm10Grade === "3") {
+    } else if (pm10Rank === "3") {
       return "나쁨";
-    } else if (dustVal.pm10Grade === "4") {
+    } else if (pm10Rank === "4") {
       return "매우 나쁨";
     }
   };
@@ -118,60 +120,60 @@ export const Air = () => {
               <Section01>
                 <Title>대기 상태</Title>
                 <ConWrap>
-                  {dustVal.khaiValue === "-" ? (
+                  {dustVal?.khaiValue === "-" ? (
                     ""
                   ) : (
                     <Con>
                       <Name>통합대기</Name>
-                      <Value>{dustVal.khaiValue} unit</Value>
+                      <Value>{dustVal?.khaiValue} unit</Value>
                     </Con>
                   )}
-                  {dustVal.pm10Value === "-" ? (
+                  {dustVal?.pm10Value === "-" ? (
                     ""
                   ) : (
                     <Con>
                       <Name>미세먼지 (PM10)</Name>
-                      <Value>{dustVal.pm10Value} ㎍/㎥</Value>
+                      <Value>{dustVal?.pm10Value} ㎍/㎥</Value>
                     </Con>
                   )}
-                  {dustVal.pm25Value === "-" ? (
+                  {dustVal?.pm25Value === "-" ? (
                     ""
                   ) : (
                     <Con>
                       <Name>초미세먼지 (PM2.5)</Name>
-                      <Value>{dustVal.pm25Value} ㎍/㎥</Value>
+                      <Value>{dustVal?.pm25Value} ㎍/㎥</Value>
                     </Con>
                   )}
-                  {dustVal.o3Value === "-" ? (
+                  {dustVal?.o3Value === "-" ? (
                     ""
                   ) : (
                     <Con>
                       <Name>오존 (O3)</Name>
-                      <Value>{dustVal.o3Value} ppm</Value>
+                      <Value>{dustVal?.o3Value} ppm</Value>
                     </Con>
                   )}
-                  {dustVal.no2Value === "-" ? (
+                  {dustVal?.no2Value === "-" ? (
                     ""
                   ) : (
                     <Con>
                       <Name>이산화질소 (NO2)</Name>
-                      <Value>{dustVal.no2Value} ppm</Value>
+                      <Value>{dustVal?.no2Value} ppm</Value>
                     </Con>
                   )}
-                  {dustVal.coValue === "-" ? (
+                  {dustVal?.coValue === "-" ? (
                     ""
                   ) : (
                     <Con>
                       <Name>일산화탄소 (CO)</Name>
-                      <Value>{dustVal.coValue} ppm</Value>
+                      <Value>{dustVal?.coValue} ppm</Value>
                     </Con>
                   )}
-                  {dustVal.so2Value === "-" ? (
+                  {dustVal?.so2Value === "-" ? (
                     ""
                   ) : (
                     <Con>
                       <Name>아황산가스 (SO2)</Name>
-                      <Value>{dustVal.so2Value} ppm</Value>
+                      <Value>{dustVal?.so2Value} ppm</Value>
                     </Con>
                   )}
                 </ConWrap>

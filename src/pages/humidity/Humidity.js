@@ -60,8 +60,6 @@ export const Humidity = () => {
 
   const dateVal = `${year}-${month}-${date} ${hour}:00`;
 
-  const time = reh?.map((x) => x.fcstTime.slice(0, 2));
-
   return (
     <>
       {isLoading ? (

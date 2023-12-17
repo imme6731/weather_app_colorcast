@@ -121,6 +121,7 @@ export const Home = () => {
           .filter((x) => x.category === "TMN")
           .map((x) => x);
         setTmn(todayTMN);
+
         const after1daySky = short?.body?.items?.item
           .filter(
             (x) =>
@@ -239,7 +240,7 @@ export const Home = () => {
     .map((x) => Math.round(x.fcstValue));
 
   const tmnVal = tmn
-    ?.filter((x) => x.fcstDate === after1day)
+    ?.filter((x) => x.fcstDate === base_date)
     .map((x) => Math.round(x.fcstValue));
 
   const midIcon = (mm) => {
