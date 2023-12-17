@@ -46,7 +46,7 @@ export const Section2 = ({ tM, siv, rM, sM, tt }) => {
         <SwiperSlide>
           <Con>
             <Time>
-              {tM?.[0] < "13"
+              {tM?.[0] < "12"
                 ? tM?.[0] > "9"
                   ? `오전 ${tM?.[0]}시`
                   : `오전 ${tM?.[0].slice(1, 2)}시`

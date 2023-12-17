@@ -20,12 +20,13 @@ const geoOptions = {
   method: "GET",
 };
 
-const now = new Date();
-const year = now.getFullYear().toString();
-const month = now.getMonth() + 1;
-const date = now.getDate();
-const hours = ("0" + now.getHours()).slice(-2);
-const minutes = ("0" + now.getMinutes()).slice(-2);
+export const now = new Date();
+export const year = now.getFullYear().toString();
+export const month = now.getMonth() + 1;
+export const date = now.getDate();
+export const hour = now.getHours();
+export const hours = ("0" + now.getHours()).slice(-2);
+export const minutes = ("0" + now.getMinutes()).slice(-2);
 export const base_date = year + month + date;
 export const after1day = year + month + (date + 1);
 export const after2day = year + month + (date + 2);
