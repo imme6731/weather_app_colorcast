@@ -46,7 +46,9 @@ export const Title = styled.h3`
   color: #343434;
   font-weight: 500;
 `;
-export const ConWrap = styled.div``;
+export const ConWrap = styled.div`
+  padding-bottom: 5px;
+`;
 export const Con = styled.div`
   display: flex;
   justify-content: space-between;

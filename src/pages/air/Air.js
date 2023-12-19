@@ -111,9 +111,11 @@ export const Air = () => {
               <Main>
                 {geo && <Location>{geo.address_name}</Location>}
                 <Date>{dateVal}</Date>
-                <Icon>
-                  <FontAwesomeIcon icon={dustIcon()} />
-                </Icon>
+                {dustIcon() && (
+                  <Icon>
+                    <FontAwesomeIcon icon={dustIcon()} />
+                  </Icon>
+                )}
                 <Txt>{dustTxt()}</Txt>
               </Main>
 

@@ -16,7 +16,9 @@ const Title = styled.div`
     font-weight: 500;
   }
 `;
-const ConWrap = styled.div``;
+const ConWrap = styled.div`
+  padding-bottom: 5px;
+`;
 const Con = styled.div`
   display: flex;
   justify-content: space-between;

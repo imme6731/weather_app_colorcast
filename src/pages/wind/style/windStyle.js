@@ -21,17 +21,26 @@ export const Location = styled.div`
 `;
 export const Date = styled.p`
   font-size: 16px;
-  margin-bottom: 30px;
+  margin-bottom: 40px;
 `;
-export const Pado = styled.div`
+export const WindIcon = styled.div`
   font-size: 120px;
-  color: lightblue;
-  margin-bottom: 30px;
+  color: #8db0f7;
+  margin-bottom: 40px;
 `;
-export const Percent = styled.h3`
-  font-size: 40px;
-  font-weight: 500;
+
+export const ValWrap = styled.div`
+  display: flex;
   margin-bottom: 25px;
+`;
+export const MDirection = styled.h3`
+  font-size: 32px;
+  font-weight: 500;
+`;
+export const MSpeed = styled.h3`
+  font-size: 32px;
+  font-weight: 500;
+  margin-left: 20px;
   & span {
     font-size: 24px;
   }
@@ -70,9 +79,14 @@ export const Value = styled.div`
 `;
 export const Icon = styled.div`
   font-size: 24px;
-  color: lightblue;
+  color: #8db0f7;
 `;
-export const Per = styled.p`
+export const Direction = styled.p`
+  font-size: 18px;
+  color: #343434;
+  margin-left: 10px;
+`;
+export const Speed = styled.p`
   font-size: 18px;
   color: #343434;
   margin-left: 10px;

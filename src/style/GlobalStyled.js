@@ -19,7 +19,7 @@ body{
 
   
     & #root{
-        background-color: lightpink;
+        background-color: #EBC7E8;
     }
 }
 
@@ -30,6 +30,10 @@ ul, li{
 a{
     text-decoration: none;
     color: white;
+}
+img{
+    box-sizing: border-box;
+    border: none;
 }
 `;
 // const skyBgVal = () => {

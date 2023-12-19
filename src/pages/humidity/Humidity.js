@@ -51,7 +51,6 @@ export const Humidity = () => {
           .filter((x) => x.category === "REH")
           .map((x) => x);
         setReh(todayREH);
-        console.log(todayREH);
       } catch (error) {
         console.log("error : " + error);
       }
@@ -74,10 +73,12 @@ export const Humidity = () => {
                 <Pado>
                   <FontAwesomeIcon icon={faDroplet} />
                 </Pado>
-                <Percent>
-                  {reh?.[0]?.fcstValue}
-                  <span>%</span>
-                </Percent>
+                {reh && (
+                  <Percent>
+                    {reh?.[0]?.fcstValue}
+                    <span>%</span>
+                  </Percent>
+                )}
               </Main>
 
               <Section01>
@@ -90,8 +91,12 @@ export const Humidity = () => {
                           {rr.fcstTime.slice(0, 2) < "12"
                             ? rr.fcstTime.slice(0, 2) > "9"
                               ? `오전 ${rr.fcstTime.slice(0, 2)}시`
+                              : rr.fcstTime.slice(0, 2) === "00"
+                              ? `오전 12시`
                               : `오전 ${rr.fcstTime.slice(1, 2)}시`
-                            : `오후 ${rr.fcstTime - 12}시`}
+                            : rr.fcstTime.slice(0, 2) === "12"
+                            ? `오후 12시`
+                            : `오후 ${rr.fcstTime.slice(0, 2) - 12}시`}
                         </Time>
 
                         <Value>
