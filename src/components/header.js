@@ -2,7 +2,7 @@ import { Button, Drawer, useDisclosure } from "@chakra-ui/react";
 import { faBars, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { styled } from "styled-components";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import LogoPic from "../assets/img/Logo.png";
 import homePic from "../assets/img/home.png";
@@ -12,6 +12,7 @@ import windPic from "../assets/img/wind.png";
 
 const Wrap = styled.div`
   width: 100%;
+  max-width: 400px;
   padding: 20px 15px;
 `;
 const Bar = styled.div`
@@ -86,8 +87,29 @@ const ConTxt = styled.h3`
 export const Header = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = useRef();
+
+  const headerRef = useRef();
+
+  const scrollHandler = () => {
+    const pageY = window.scrollY;
+
+    if (pageY > 100) {
+      headerRef.current.style.position = "fixed";
+      headerRef.current.style.backgroundColor = "transparent";
+      headerRef.current.style.backdropFilter = "blur(2px)";
+    } else {
+      headerRef.current.style.position = "relative";
+      headerRef.current.style.backgroundColor = "transparent";
+      headerRef.current.style.backdropFilter = "blur(0px)";
+    }
+  };
+
+  useEffect(() => {
+    return window.addEventListener("scroll", scrollHandler);
+  });
+
   return (
-    <Wrap>
+    <Wrap ref={headerRef}>
       <Button
         border={"none"}
         background={"none"}

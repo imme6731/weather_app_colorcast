@@ -27,6 +27,8 @@ import {
   Icon,
   Per,
 } from "./style/humidStyle";
+import { Loading } from "../../components/Loading";
+import { PageTitle } from "../../components/PageTitle";
 
 export const Humidity = () => {
   const { lat, lon } = useCurrentLocation();
@@ -42,7 +44,7 @@ export const Humidity = () => {
         setIsLoading(false);
 
         const { documents } = await reverseGeo(lat, lon);
-        setGeo(documents[0]);
+        setGeo(documents?.[0]);
 
         // 역지오코딩
 
@@ -61,35 +63,38 @@ export const Humidity = () => {
 
   return (
     <>
+      <PageTitle titlename={` | Humidity`} />
       {isLoading ? (
-        "...loading"
+        <Loading />
       ) : (
         <>
           {
             <Wrap>
               <Main>
-                {geo && <Location>{geo.address_name}</Location>}
+                {geo ? <Location>{geo.address_name}</Location> : <Loading />}
                 <Date>{dateVal}</Date>
                 <Pado>
                   <FontAwesomeIcon icon={faDroplet} />
                 </Pado>
-                {reh && (
+                {reh ? (
                   <Percent>
                     {reh?.[0]?.fcstValue}
                     <span>%</span>
                   </Percent>
+                ) : (
+                  <Loading />
                 )}
               </Main>
 
               <Section01>
                 <Title>시간별 예보</Title>
                 <ConWrap>
-                  {reh &&
+                  {reh ? (
                     reh.map((rr) => (
                       <Con key={rr.fcstTime}>
                         <Time>
                           {rr.fcstTime.slice(0, 2) < "12"
-                            ? rr.fcstTime.slice(0, 2) > "9"
+                            ? rr.fcstTime.slice(0, 2) > "09"
                               ? `오전 ${rr.fcstTime.slice(0, 2)}시`
                               : rr.fcstTime.slice(0, 2) === "00"
                               ? `오전 12시`
@@ -106,7 +111,10 @@ export const Humidity = () => {
                           <Per>{rr.fcstValue}%</Per>
                         </Value>
                       </Con>
-                    ))}
+                    ))
+                  ) : (
+                    <Loading />
+                  )}
                 </ConWrap>
               </Section01>
             </Wrap>

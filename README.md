@@ -8,10 +8,11 @@
 - [x] react-router-dom
 - [x] styled-reset
 - [x] node-fetch@2
-- [] 타이틑 관련
+- [x] 타이틑 관련
 - [x] 폰트어썸
 - [x] swiper
 - [x] chakra
+- [x] react-spinner
 
 ## todo
 
@@ -42,7 +43,7 @@
 - [x] 요일별 api 설정
 
 - [x] 미세먼지 api 설정
-- [] 배경색상 case 설정
+- [x] 배경색상 case 설정
 
 ### 12월 15일
 
@@ -68,7 +69,7 @@
 
 - [x] main api 설정
 - [x] 시간별 api 설정
-- [] 배경색상 case 설정
+- [x] 배경색상 case 설정
 
 ### 12월 18일
 
@@ -79,10 +80,10 @@
 
 ### 12월 19일
 
-- [] 스플래쉬 UI 제작
-- [] 404 UI 제작
-- [] helmet 구성
-- [] 디테일 작업
+- [x] loading UI 제작 및 설정
+- [x] 404 UI 제작
+- [x] helmet 구성
+- [x] 디테일 작업 (header pageY, loading )
 
 ### 12월 20일
 
@@ -101,6 +102,7 @@
 
 - home main >> 네트워크에서 패치함수 계속 호출됨 => home useeffect의 [] 안에 rs를 넣어서 발생한 문제, rs.x, rs.y로 입력하면 됨
 - api : fetch 에러 => 카카오로 바꾸고 오류 안남
-
-- home main >> json 문법에러
-- useCurrentLocation이 처음 랜더링 될때 default 값으로 호출됨
+- useCurrentLocation이 처음 랜더링 될때 default 값으로 호출됨 => 디폴트값 없애고 로딩 넣기
+- 랜더링할때마다 img태그 테두리 생김 => height 값 넣어서 그런거였음
+- 날씨 값에 따라 root 배경색 바꾸고 싶은데 어떻게 해야할지... => querySelector 이용하여 root 선택후 배경색 지정하는 함수 만들어 활용!!
+- 랜더링 시 카카오 api 400 error 뜸

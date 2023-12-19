@@ -32,6 +32,8 @@ import {
   Name,
   Value,
 } from "./style/airStyle";
+import { Loading } from "../../components/Loading";
+import { PageTitle } from "../../components/PageTitle";
 
 export const Air = () => {
   const { lat, lon } = useCurrentLocation();
@@ -53,12 +55,12 @@ export const Air = () => {
         setIsLoading(false);
 
         const { documents } = await reverseGeo(lat, lon);
-        setGeo(documents[0]);
+        setGeo(documents?.[0]);
 
         // 역지오코딩
 
         const { response: tmVal } = await getTmDust(
-          documents[0]?.region_3depth_name
+          documents?.[0]?.region_3depth_name
         );
         setTmRes(tmVal?.body?.items?.[0]);
 
@@ -100,83 +102,104 @@ export const Air = () => {
     }
   };
 
+  const BgColorVal = () => {
+    if (pm10Rank === "1") {
+      document.querySelector(`#root`).style.backgroundColor = "#8DB0F7";
+    } else if (pm10Rank === "2") {
+      document.querySelector(`#root`).style.backgroundColor = "#9BE9AB";
+    } else if (pm10Rank === "3") {
+      document.querySelector(`#root`).style.backgroundColor = "#F2EC95";
+    } else if (pm10Rank === "4") {
+      document.querySelector(`#root`).style.backgroundColor = "#F6AA78";
+    }
+  };
+
   return (
     <>
+      <PageTitle titlename={` | Air`} />
       {isLoading ? (
-        "...loading"
+        <Loading />
       ) : (
         <>
           {
-            <Wrap>
+            <Wrap onLoad={BgColorVal()}>
               <Main>
-                {geo && <Location>{geo.address_name}</Location>}
+                {geo ? <Location>{geo.address_name}</Location> : <Loading />}
                 <Date>{dateVal}</Date>
-                {dustIcon() && (
+                {dustIcon() ? (
                   <Icon>
                     <FontAwesomeIcon icon={dustIcon()} />
                   </Icon>
+                ) : (
+                  <Loading />
                 )}
-                <Txt>{dustTxt()}</Txt>
+                {dustTxt() ? <Txt>{dustTxt()}</Txt> : <Loading />}
               </Main>
 
               <Section01>
                 <Title>대기 상태</Title>
                 <ConWrap>
-                  {dustVal?.khaiValue === "-" ? (
-                    ""
+                  {dustVal ? (
+                    <>
+                      {dustVal?.khaiValue === "-" ? (
+                        ""
+                      ) : (
+                        <Con>
+                          <Name>통합대기</Name>
+                          <Value>{dustVal?.khaiValue} unit</Value>
+                        </Con>
+                      )}
+                      {dustVal?.pm10Value === "-" ? (
+                        ""
+                      ) : (
+                        <Con>
+                          <Name>미세먼지 (PM10)</Name>
+                          <Value>{dustVal?.pm10Value} ㎍/㎥</Value>
+                        </Con>
+                      )}
+                      {dustVal?.pm25Value === "-" ? (
+                        ""
+                      ) : (
+                        <Con>
+                          <Name>초미세먼지 (PM2.5)</Name>
+                          <Value>{dustVal?.pm25Value} ㎍/㎥</Value>
+                        </Con>
+                      )}
+                      {dustVal?.o3Value === "-" ? (
+                        ""
+                      ) : (
+                        <Con>
+                          <Name>오존 (O3)</Name>
+                          <Value>{dustVal?.o3Value} ppm</Value>
+                        </Con>
+                      )}
+                      {dustVal?.no2Value === "-" ? (
+                        ""
+                      ) : (
+                        <Con>
+                          <Name>이산화질소 (NO2)</Name>
+                          <Value>{dustVal?.no2Value} ppm</Value>
+                        </Con>
+                      )}
+                      {dustVal?.coValue === "-" ? (
+                        ""
+                      ) : (
+                        <Con>
+                          <Name>일산화탄소 (CO)</Name>
+                          <Value>{dustVal?.coValue} ppm</Value>
+                        </Con>
+                      )}
+                      {dustVal?.so2Value === "-" ? (
+                        ""
+                      ) : (
+                        <Con>
+                          <Name>아황산가스 (SO2)</Name>
+                          <Value>{dustVal?.so2Value} ppm</Value>
+                        </Con>
+                      )}
+                    </>
                   ) : (
-                    <Con>
-                      <Name>통합대기</Name>
-                      <Value>{dustVal?.khaiValue} unit</Value>
-                    </Con>
-                  )}
-                  {dustVal?.pm10Value === "-" ? (
-                    ""
-                  ) : (
-                    <Con>
-                      <Name>미세먼지 (PM10)</Name>
-                      <Value>{dustVal?.pm10Value} ㎍/㎥</Value>
-                    </Con>
-                  )}
-                  {dustVal?.pm25Value === "-" ? (
-                    ""
-                  ) : (
-                    <Con>
-                      <Name>초미세먼지 (PM2.5)</Name>
-                      <Value>{dustVal?.pm25Value} ㎍/㎥</Value>
-                    </Con>
-                  )}
-                  {dustVal?.o3Value === "-" ? (
-                    ""
-                  ) : (
-                    <Con>
-                      <Name>오존 (O3)</Name>
-                      <Value>{dustVal?.o3Value} ppm</Value>
-                    </Con>
-                  )}
-                  {dustVal?.no2Value === "-" ? (
-                    ""
-                  ) : (
-                    <Con>
-                      <Name>이산화질소 (NO2)</Name>
-                      <Value>{dustVal?.no2Value} ppm</Value>
-                    </Con>
-                  )}
-                  {dustVal?.coValue === "-" ? (
-                    ""
-                  ) : (
-                    <Con>
-                      <Name>일산화탄소 (CO)</Name>
-                      <Value>{dustVal?.coValue} ppm</Value>
-                    </Con>
-                  )}
-                  {dustVal?.so2Value === "-" ? (
-                    ""
-                  ) : (
-                    <Con>
-                      <Name>아황산가스 (SO2)</Name>
-                      <Value>{dustVal?.so2Value} ppm</Value>
-                    </Con>
+                    <Loading />
                   )}
                 </ConWrap>
               </Section01>

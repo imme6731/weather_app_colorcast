@@ -39,6 +39,8 @@ import { Section2 } from "./components/Section2";
 import { Main } from "./components/Main";
 import { Section3 } from "./components/Section3";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Loading } from "../../components/Loading";
+import { PageTitle } from "../../components/PageTitle";
 
 export const Home = () => {
   const { lat, lon } = useCurrentLocation();
@@ -72,12 +74,12 @@ export const Home = () => {
         setIsLoading(false);
 
         const { documents } = await reverseGeo(lat, lon);
-        setGeo(documents[0]);
+        setGeo(documents?.[0]);
 
         // 역지오코딩
 
         const { response: tmVal } = await getTmDust(
-          documents[0]?.region_3depth_name
+          documents?.[0]?.region_3depth_name
         );
         setTmRes(tmVal?.body?.items?.[0]);
 
@@ -109,7 +111,7 @@ export const Home = () => {
         const todayWSD = today?.body?.items?.item
           .filter((x) => x.category === "WSD")
           .map((x) => x);
-        setWsd(todayWSD?.[0].fcstValue);
+        setWsd(todayWSD?.[0]?.fcstValue);
         // 초단기예보
 
         const { response: short } = await getWeather(rs.x, rs.y);
@@ -281,14 +283,38 @@ export const Home = () => {
     }
   };
 
+  const BgColorVal = () => {
+    if (nowRain === "0") {
+      if (nowSky === "1") {
+        document.querySelector(`#root`).style.backgroundColor = "#ECBDBB";
+      } else if (nowSky === "3") {
+        document.querySelector(`#root`).style.backgroundColor = "#BFACE0";
+      } else if (nowSky === "4") {
+        document.querySelector(`#root`).style.backgroundColor = "#645CAA";
+      }
+    } else if (nowRain !== "0") {
+      if (
+        nowRain === "1" ||
+        nowRain === "2" ||
+        nowRain === "5" ||
+        nowRain === "6"
+      ) {
+        document.querySelector(`#root`).style.backgroundColor = "#A084CA";
+      } else if (nowRain === "3" || nowRain === "7") {
+        document.querySelector(`#root`).style.backgroundColor = "#8D72E1";
+      }
+    }
+  };
+
   return (
     <>
+      <PageTitle titlename={` | Home`} />
       {isLoading ? (
-        "...loading"
+        <Loading />
       ) : (
         <>
           {getUltraWeather && (
-            <Wrap>
+            <Wrap onLoad={BgColorVal()}>
               <Main
                 gg={geo}
                 sV={skyVal}
@@ -303,25 +329,41 @@ export const Home = () => {
               <Section01>
                 <Air>
                   <Icon>
-                    {dustIcon() && <FontAwesomeIcon icon={dustIcon()} />}
+                    {dustIcon() ? (
+                      <FontAwesomeIcon icon={dustIcon()} />
+                    ) : (
+                      <Loading />
+                    )}
                   </Icon>
-                  <TxtBox>
-                    <p>미세먼지</p>
-                    <h3>{dustTxt()}</h3>
-                  </TxtBox>
+                  {dustTxt() ? (
+                    <TxtBox>
+                      <p>미세먼지</p>
+                      <h3>{dustTxt()}</h3>
+                    </TxtBox>
+                  ) : (
+                    <Loading />
+                  )}
                 </Air>
                 <Wind>
-                  <Direction>
-                    <p>풍향</p>
-                    <h3>{vecVal()}</h3>
-                  </Direction>
-                  <Speed>
-                    <p>풍속</p>
-                    <h3>
-                      {wsd}
-                      <span>m/s</span>
-                    </h3>
-                  </Speed>
+                  {vecVal() ? (
+                    <Direction>
+                      <p>풍향</p>
+                      <h3>{vecVal()}풍</h3>
+                    </Direction>
+                  ) : (
+                    <Loading />
+                  )}
+                  {wsd ? (
+                    <Speed>
+                      <p>풍속</p>
+                      <h3>
+                        {wsd}
+                        <span>m/s</span>
+                      </h3>
+                    </Speed>
+                  ) : (
+                    <Loading />
+                  )}
                 </Wind>
               </Section01>
 

@@ -30,6 +30,8 @@ import {
   Direction,
   Speed,
 } from "./style/windStyle";
+import { Loading } from "../../components/Loading";
+import { PageTitle } from "../../components/PageTitle";
 
 export const Wind = () => {
   const { lat, lon } = useCurrentLocation();
@@ -37,8 +39,8 @@ export const Wind = () => {
 
   const [isLoading, setIsLoading] = useState(true);
   const [geo, setGeo] = useState();
-  const [vec, setVec] = useState();
-  const [wsd, setWsd] = useState();
+  const [vec, setVec] = useState([]);
+  const [wsd, setWsd] = useState([]);
 
   useEffect(() => {
     (async () => {
@@ -46,7 +48,7 @@ export const Wind = () => {
         setIsLoading(false);
 
         const { documents } = await reverseGeo(lat, lon);
-        setGeo(documents[0]);
+        setGeo(documents?.[0]);
 
         // 역지오코딩
 
@@ -90,27 +92,32 @@ export const Wind = () => {
 
   return (
     <>
+      <PageTitle titlename={` | Wind`} />
       {isLoading ? (
-        "...loading"
+        <Loading />
       ) : (
         <>
           {
             <Wrap>
               <Main>
-                {geo && <Location>{geo.address_name}</Location>}
+                {geo ? <Location>{geo.address_name}</Location> : <Loading />}
                 <Date>{dateVal}</Date>
                 <WindIcon>
                   <FontAwesomeIcon icon={faWind} />
                 </WindIcon>
                 <ValWrap>
-                  {vec && (
+                  {vec ? (
                     <MDirection>{vecVal(vec?.[0]?.fcstValue)}풍</MDirection>
+                  ) : (
+                    <Loading />
                   )}
-                  {wsd && (
+                  {wsd ? (
                     <MSpeed>
                       {wsd?.[0]?.fcstValue}
                       <span>m/s</span>
                     </MSpeed>
+                  ) : (
+                    <Loading />
                   )}
                 </ValWrap>
               </Main>
@@ -118,132 +125,142 @@ export const Wind = () => {
               <Section01>
                 <Title>시간별 예보</Title>
                 <ConWrap>
-                  <Con>
-                    <Time>
-                      {vec?.[0]?.fcstTime.slice(0, 2) < "12"
-                        ? vec.fcstTime.slice(0, 2) > "9"
-                          ? `오전 ${vec?.[0]?.fcstTime.slice(0, 2)}시`
-                          : vec?.[0]?.fcstTime.slice(0, 2) === "00"
-                          ? `오전 12시`
-                          : `오전 ${vec?.[0]?.fcstTime.slice(1, 2)}시`
-                        : vec?.[0]?.fcstTime.slice(0, 2) === "12"
-                        ? `오후 12시`
-                        : `오후 ${vec?.[0]?.fcstTime.slice(0, 2) - 12}시`}
-                    </Time>
+                  {vec ? (
+                    <>
+                      <Con>
+                        {vec && (
+                          <Time>
+                            {vec?.[0]?.fcstTime?.slice(0, 2) < "12"
+                              ? vec?.fcstTime?.slice(0, 2) > "09"
+                                ? `오전 ${vec?.[0]?.fcstTime?.slice(0, 2)}시`
+                                : vec?.[0]?.fcstTime?.slice(0, 2) === "00"
+                                ? `오전 12시`
+                                : `오전 ${vec?.[0]?.fcstTime?.slice(1, 2)}시`
+                              : vec?.[0]?.fcstTime?.slice(0, 2) === "12"
+                              ? `오후 12시`
+                              : `오후 ${
+                                  vec?.[0]?.fcstTime?.slice(0, 2) - 12
+                                }시`}
+                          </Time>
+                        )}
 
-                    <Value>
-                      <Icon>
-                        <FontAwesomeIcon icon={faWind} />
-                      </Icon>
-                      <Direction>{vecVal(vec?.[0]?.fcstValue)}풍</Direction>
-                      <Speed>{wsd?.[0]?.fcstValue}m/s</Speed>
-                    </Value>
-                  </Con>
-                  <Con>
-                    <Time>
-                      {vec?.[1]?.fcstTime.slice(0, 2) < "12"
-                        ? vec.fcstTime.slice(0, 2) > "9"
-                          ? `오전 ${vec?.[1]?.fcstTime.slice(0, 2)}시`
-                          : vec?.[1]?.fcstTime.slice(0, 2) === "00"
-                          ? `오전 12시`
-                          : `오전 ${vec?.[1]?.fcstTime.slice(1, 2)}시`
-                        : vec?.[1]?.fcstTime.slice(0, 2) === "12"
-                        ? `오후 12시`
-                        : `오후 ${vec?.[1]?.fcstTime.slice(0, 2) - 12}시`}
-                    </Time>
+                        <Value>
+                          <Icon>
+                            <FontAwesomeIcon icon={faWind} />
+                          </Icon>
+                          <Direction>{vecVal(vec?.[0]?.fcstValue)}풍</Direction>
+                          <Speed>{wsd?.[0]?.fcstValue}m/s</Speed>
+                        </Value>
+                      </Con>
+                      <Con>
+                        <Time>
+                          {vec?.[1]?.fcstTime?.slice(0, 2) < "12"
+                            ? vec.fcstTime?.slice(0, 2) > "09"
+                              ? `오전 ${vec?.[1]?.fcstTime?.slice(0, 2)}시`
+                              : vec?.[1]?.fcstTime?.slice(0, 2) === "00"
+                              ? `오전 12시`
+                              : `오전 ${vec?.[1]?.fcstTime?.slice(1, 2)}시`
+                            : vec?.[1]?.fcstTime?.slice(0, 2) === "12"
+                            ? `오후 12시`
+                            : `오후 ${vec?.[1]?.fcstTime?.slice(0, 2) - 12}시`}
+                        </Time>
 
-                    <Value>
-                      <Icon>
-                        <FontAwesomeIcon icon={faWind} />
-                      </Icon>
-                      <Direction>{vecVal(vec?.[1]?.fcstValue)}풍</Direction>
-                      <Speed>{wsd?.[1]?.fcstValue}m/s</Speed>
-                    </Value>
-                  </Con>
-                  <Con>
-                    <Time>
-                      {vec?.[2]?.fcstTime.slice(0, 2) < "12"
-                        ? vec.fcstTime.slice(0, 2) > "9"
-                          ? `오전 ${vec?.[2]?.fcstTime.slice(0, 2)}시`
-                          : vec?.[2]?.fcstTime.slice(0, 2) === "00"
-                          ? `오전 12시`
-                          : `오전 ${vec?.[2]?.fcstTime.slice(1, 2)}시`
-                        : vec?.[2]?.fcstTime.slice(0, 2) === "12"
-                        ? `오후 12시`
-                        : `오후 ${vec?.[2]?.fcstTime.slice(0, 2) - 12}시`}
-                    </Time>
+                        <Value>
+                          <Icon>
+                            <FontAwesomeIcon icon={faWind} />
+                          </Icon>
+                          <Direction>{vecVal(vec?.[1]?.fcstValue)}풍</Direction>
+                          <Speed>{wsd?.[1]?.fcstValue}m/s</Speed>
+                        </Value>
+                      </Con>
+                      <Con>
+                        <Time>
+                          {vec?.[2]?.fcstTime?.slice(0, 2) < "12"
+                            ? vec?.fcstTime?.slice(0, 2) > "09"
+                              ? `오전 ${vec?.[2]?.fcstTime?.slice(0, 2)}시`
+                              : vec?.[2]?.fcstTime?.slice(0, 2) === "00"
+                              ? `오전 12시`
+                              : `오전 ${vec?.[2]?.fcstTime?.slice(1, 2)}시`
+                            : vec?.[2]?.fcstTime?.slice(0, 2) === "12"
+                            ? `오후 12시`
+                            : `오후 ${vec?.[2]?.fcstTime?.slice(0, 2) - 12}시`}
+                        </Time>
 
-                    <Value>
-                      <Icon>
-                        <FontAwesomeIcon icon={faWind} />
-                      </Icon>
-                      <Direction>{vecVal(vec?.[2]?.fcstValue)}풍</Direction>
-                      <Speed>{wsd?.[2]?.fcstValue}m/s</Speed>
-                    </Value>
-                  </Con>
-                  <Con>
-                    <Time>
-                      {vec?.[3]?.fcstTime.slice(0, 2) < "12"
-                        ? vec?.[3]?.fcstTime.slice(0, 2) > "9"
-                          ? `오전 ${vec?.[3]?.fcstTime.slice(0, 2)}시`
-                          : vec?.[3]?.fcstTime.slice(0, 2) === "00"
-                          ? `오전 12시`
-                          : `오전 ${vec?.[3]?.fcstTime.slice(1, 2)}시`
-                        : vec?.[3]?.fcstTime.slice(0, 2) === "12"
-                        ? `오후 12시`
-                        : `오후 ${vec?.[3]?.fcstTime.slice(0, 2) - 12}시`}
-                    </Time>
+                        <Value>
+                          <Icon>
+                            <FontAwesomeIcon icon={faWind} />
+                          </Icon>
+                          <Direction>{vecVal(vec?.[2]?.fcstValue)}풍</Direction>
+                          <Speed>{wsd?.[2]?.fcstValue}m/s</Speed>
+                        </Value>
+                      </Con>
+                      <Con>
+                        <Time>
+                          {vec?.[3]?.fcstTime?.slice(0, 2) < "12"
+                            ? vec?.[3]?.fcstTime?.slice(0, 2) > "09"
+                              ? `오전 ${vec?.[3]?.fcstTime?.slice(0, 2)}시`
+                              : vec?.[3]?.fcstTime?.slice(0, 2) === "00"
+                              ? `오전 12시`
+                              : `오전 ${vec?.[3]?.fcstTime?.slice(1, 2)}시`
+                            : vec?.[3]?.fcstTime?.slice(0, 2) === "12"
+                            ? `오후 12시`
+                            : `오후 ${vec?.[3]?.fcstTime?.slice(0, 2) - 12}시`}
+                        </Time>
 
-                    <Value>
-                      <Icon>
-                        <FontAwesomeIcon icon={faWind} />
-                      </Icon>
-                      <Direction>{vecVal(vec?.[3]?.fcstValue)}풍</Direction>
-                      <Speed>{wsd?.[3]?.fcstValue}m/s</Speed>
-                    </Value>
-                  </Con>
-                  <Con>
-                    <Time>
-                      {vec?.[4]?.fcstTime.slice(0, 2) < "12"
-                        ? vec?.[4]?.fcstTime.slice(0, 2) > "9"
-                          ? `오전 ${vec?.[4]?.fcstTime.slice(0, 2)}시`
-                          : vec?.[4]?.fcstTime.slice(0, 2) === "00"
-                          ? `오전 12시`
-                          : `오전 ${vec?.[4]?.fcstTime.slice(1, 2)}시`
-                        : vec?.[4]?.fcstTime.slice(0, 2) === "12"
-                        ? `오후 12시`
-                        : `오후 ${vec?.[4]?.fcstTime.slice(0, 2) - 12}시`}
-                    </Time>
+                        <Value>
+                          <Icon>
+                            <FontAwesomeIcon icon={faWind} />
+                          </Icon>
+                          <Direction>{vecVal(vec?.[3]?.fcstValue)}풍</Direction>
+                          <Speed>{wsd?.[3]?.fcstValue}m/s</Speed>
+                        </Value>
+                      </Con>
+                      <Con>
+                        <Time>
+                          {vec?.[4]?.fcstTime?.slice(0, 2) < "12"
+                            ? vec?.[4]?.fcstTime?.slice(0, 2) > "09"
+                              ? `오전 ${vec?.[4]?.fcstTime?.slice(0, 2)}시`
+                              : vec?.[4]?.fcstTime?.slice(0, 2) === "00"
+                              ? `오전 12시`
+                              : `오전 ${vec?.[4]?.fcstTime?.slice(1, 2)}시`
+                            : vec?.[4]?.fcstTime?.slice(0, 2) === "12"
+                            ? `오후 12시`
+                            : `오후 ${vec?.[4]?.fcstTime?.slice(0, 2) - 12}시`}
+                        </Time>
 
-                    <Value>
-                      <Icon>
-                        <FontAwesomeIcon icon={faWind} />
-                      </Icon>
-                      <Direction>{vecVal(vec?.[4]?.fcstValue)}풍</Direction>
-                      <Speed>{wsd?.[4]?.fcstValue}m/s</Speed>
-                    </Value>
-                  </Con>
-                  <Con>
-                    <Time>
-                      {vec?.[5]?.fcstTime.slice(0, 2) < "12"
-                        ? vec?.[5]?.fcstTime.slice(0, 2) > "9"
-                          ? `오전 ${vec?.[5]?.fcstTime.slice(0, 2)}시`
-                          : vec?.[5]?.fcstTime.slice(0, 2) === "00"
-                          ? `오전 12시`
-                          : `오전 ${vec?.[5]?.fcstTime.slice(1, 2)}시`
-                        : vec?.[5]?.fcstTime.slice(0, 2) === "12"
-                        ? `오후 12시`
-                        : `오후 ${vec?.[5]?.fcstTime.slice(0, 2) - 12}시`}
-                    </Time>
+                        <Value>
+                          <Icon>
+                            <FontAwesomeIcon icon={faWind} />
+                          </Icon>
+                          <Direction>{vecVal(vec?.[4]?.fcstValue)}풍</Direction>
+                          <Speed>{wsd?.[4]?.fcstValue}m/s</Speed>
+                        </Value>
+                      </Con>
+                      <Con>
+                        <Time>
+                          {vec?.[5]?.fcstTime?.slice(0, 2) < "12"
+                            ? vec?.[5]?.fcstTime?.slice(0, 2) > "09"
+                              ? `오전 ${vec?.[5]?.fcstTime?.slice(0, 2)}시`
+                              : vec?.[5]?.fcstTime?.slice(0, 2) === "00"
+                              ? `오전 12시`
+                              : `오전 ${vec?.[5]?.fcstTime?.slice(1, 2)}시`
+                            : vec?.[5]?.fcstTime?.slice(0, 2) === "12"
+                            ? `오후 12시`
+                            : `오후 ${vec?.[5]?.fcstTime?.slice(0, 2) - 12}시`}
+                        </Time>
 
-                    <Value>
-                      <Icon>
-                        <FontAwesomeIcon icon={faWind} />
-                      </Icon>
-                      <Direction>{vecVal(vec?.[5]?.fcstValue)}풍</Direction>
-                      <Speed>{wsd?.[5]?.fcstValue}m/s</Speed>
-                    </Value>
-                  </Con>
+                        <Value>
+                          <Icon>
+                            <FontAwesomeIcon icon={faWind} />
+                          </Icon>
+                          <Direction>{vecVal(vec?.[5]?.fcstValue)}풍</Direction>
+                          <Speed>{wsd?.[5]?.fcstValue}m/s</Speed>
+                        </Value>
+                      </Con>
+                    </>
+                  ) : (
+                    <Loading />
+                  )}
                 </ConWrap>
               </Section01>
             </Wrap>
