@@ -87,7 +87,7 @@ export const Home = () => {
         setStationVal(stationRes?.body?.items?.[0]?.stationName);
 
         const { response: dust } = await getDust(stationVal);
-        setPm10Rank(dust?.body?.items?.[0]?.pm10Grade);
+        setPm10Rank(dust?.body?.items?.[0]?.pm10Grade1h);
 
         // 대기오염
 

@@ -69,7 +69,7 @@ export const Air = () => {
 
         const { response: dust } = await getDust(stationVal);
         setDustVal(dust?.body?.items?.[0]);
-        setPm10Rank(dust?.body?.items?.[0]?.pm10Grade);
+        setPm10Rank(dust?.body?.items?.[0]?.pm10Grade1h);
       } catch (error) {
         console.log("error : " + error);
       }
