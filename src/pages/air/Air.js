@@ -6,7 +6,7 @@ import {
   getDust,
   getNearbyDust,
   getTmDust,
-  hour,
+  hours,
   month,
   reverseGeo,
   year,
@@ -76,7 +76,7 @@ export const Air = () => {
     })();
   }, [lat, lon, rs.x, rs.y, stationVal, tmXVal, tmYVal]);
 
-  const dateVal = `${year}-${month}-${date} ${hour}:00`;
+  const dateVal = `${year}-${month}-${date} ${hours}:00`;
 
   const dustIcon = () => {
     if (pm10Rank === "1") {
@@ -104,13 +104,14 @@ export const Air = () => {
 
   const BgColorVal = () => {
     if (pm10Rank === "1") {
-      document.querySelector(`#root`).style.backgroundColor = "#8DB0F7";
+      document.querySelector(`#root`).style.backgroundColor =
+        "rgb(119 159 240)";
     } else if (pm10Rank === "2") {
-      document.querySelector(`#root`).style.backgroundColor = "#9BE9AB";
+      document.querySelector(`#root`).style.backgroundColor = "#72cd85";
     } else if (pm10Rank === "3") {
-      document.querySelector(`#root`).style.backgroundColor = "#F2EC95";
+      document.querySelector(`#root`).style.backgroundColor = "#ebca75";
     } else if (pm10Rank === "4") {
-      document.querySelector(`#root`).style.backgroundColor = "#F6AA78";
+      document.querySelector(`#root`).style.backgroundColor = "#e18a50";
     }
   };
 
@@ -127,13 +128,15 @@ export const Air = () => {
                 {geo ? <Location>{geo.address_name}</Location> : <Loading />}
                 <Date>{dateVal}</Date>
                 {dustIcon() ? (
-                  <Icon>
-                    <FontAwesomeIcon icon={dustIcon()} />
-                  </Icon>
+                  <>
+                    <Icon>
+                      <FontAwesomeIcon icon={dustIcon()} />
+                    </Icon>
+                    <Txt>{dustTxt()}</Txt>
+                  </>
                 ) : (
                   <Loading />
                 )}
-                {dustTxt() ? <Txt>{dustTxt()}</Txt> : <Loading />}
               </Main>
 
               <Section01>

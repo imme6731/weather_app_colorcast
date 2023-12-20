@@ -28,6 +28,7 @@ const Time = styled.p`
 const WeatherIcon = styled.img`
   width: 40px;
   margin-bottom: 15px;
+  filter: drop-shadow(1px 1px 1px #979797);
 `;
 const Tempe = styled.h3`
   font-size: 18px;
@@ -43,132 +44,114 @@ export const Section2 = ({ tM, siv, rM, sM, tt }) => {
   return (
     <Section02>
       <Swiper {...params}>
-        <SwiperSlide>
-          {tM ? (
-            <Con>
-              <Time>
-                {tM?.[0] < "12"
-                  ? tM?.[0] > "09"
-                    ? `오전 ${tM?.[0]}시`
-                    : tM?.[0] === "00"
-                    ? `오전 12시`
-                    : `오전 ${tM?.[0].slice(1, 2)}시`
-                  : tM?.[0] === "12"
-                  ? `오후 12시`
-                  : `오후 ${tM?.[0] - 12}시`}
-              </Time>
-              <WeatherIcon src={siv(rM?.[0], sM?.[0])} />
-              <Tempe>{tt?.[0]?.fcstValue}°</Tempe>
-            </Con>
-          ) : (
-            <Loading />
-          )}
-        </SwiperSlide>
-        <SwiperSlide>
-          {tM ? (
-            <Con>
-              <Time>
-                {tM?.[1] < "12"
-                  ? tM?.[1] > "09"
-                    ? `오전 ${tM?.[1]}시`
-                    : tM?.[1] === "00"
-                    ? `오전 12시`
-                    : `오전 ${tM?.[1].slice(1, 2)}시`
-                  : tM?.[1] === "12"
-                  ? `오후 12시`
-                  : `오후 ${tM?.[1] - 12}시`}
-              </Time>
-              <WeatherIcon src={siv(rM?.[1], sM?.[1])} />
-              <Tempe>{tt?.[1]?.fcstValue}°</Tempe>
-            </Con>
-          ) : (
-            <Loading />
-          )}
-        </SwiperSlide>
-        <SwiperSlide>
-          {tM ? (
-            <Con>
-              <Time>
-                {tM?.[2] < "12"
-                  ? tM?.[2] > "09"
-                    ? `오전 ${tM?.[2]}시`
-                    : tM?.[2] === "00"
-                    ? `오전 12시`
-                    : `오전 ${tM?.[2].slice(1, 2)}시`
-                  : tM?.[2] === "12"
-                  ? `오후 12시`
-                  : `오후 ${tM?.[2] - 12}시`}
-              </Time>
-              <WeatherIcon src={siv(rM?.[2], sM?.[2])} />
-              <Tempe>{tt?.[2]?.fcstValue}°</Tempe>
-            </Con>
-          ) : (
-            <Loading />
-          )}
-        </SwiperSlide>
-        <SwiperSlide>
-          {tM ? (
-            <Con>
-              <Time>
-                {tM?.[3] < "12"
-                  ? tM?.[3] > "09"
-                    ? `오전 ${tM?.[3]}시`
-                    : tM?.[3] === "00"
-                    ? `오전 12시`
-                    : `오전 ${tM?.[3].slice(1, 2)}시`
-                  : tM?.[3] === "12"
-                  ? `오후 12시`
-                  : `오후 ${tM?.[3] - 12}시`}
-              </Time>
-              <WeatherIcon src={siv(rM?.[3], sM?.[3])} />
-              <Tempe>{tt?.[3]?.fcstValue}°</Tempe>
-            </Con>
-          ) : (
-            <Loading />
-          )}
-        </SwiperSlide>
-        <SwiperSlide>
-          {tM ? (
-            <Con>
-              <Time>
-                {tM?.[4] < "12"
-                  ? tM?.[4] > "09"
-                    ? `오전 ${tM?.[4]}시`
-                    : tM?.[4] === "00"
-                    ? `오전 12시`
-                    : `오전 ${tM?.[4].slice(1, 2)}시`
-                  : tM?.[4] === "12"
-                  ? `오후 12시`
-                  : `오후 ${tM?.[4] - 12}시`}
-              </Time>
-              <WeatherIcon src={siv(rM?.[4], sM?.[4])} />
-              <Tempe>{tt?.[4]?.fcstValue}°</Tempe>
-            </Con>
-          ) : (
-            <Loading />
-          )}
-        </SwiperSlide>
-        <SwiperSlide>
-          {tM ? (
-            <Con>
-              <Time>
-                {tM?.[5] < "12"
-                  ? tM?.[5] > "09"
-                    ? `오전 ${tM?.[5]}시`
-                    : tM?.[5] === "00"
-                    ? `오전 12시`
-                    : `오전 ${tM?.[5].slice(1, 2)}시`
-                  : tM?.[5] === "12"
-                  ? `오후 12시`
-                  : `오후 ${tM?.[5] - 12}시`}
-              </Time>
-              <WeatherIcon src={siv(rM?.[5], sM?.[5])} />
-              <Tempe>{tt?.[5]?.fcstValue}°</Tempe>
-            </Con>
-          ) : (
-            <Loading />
-          )}
-        </SwiperSlide>
+        {tM ? (
+          <>
+            <SwiperSlide>
+              <Con>
+                <Time>
+                  {tM?.[0] < "12"
+                    ? tM?.[0] > "09"
+                      ? `오전 ${tM?.[0]}시`
+                      : tM?.[0] === "00"
+                      ? `오전 12시`
+                      : `오전 ${tM?.[0].slice(1, 2)}시`
+                    : tM?.[0] === "12"
+                    ? `오후 12시`
+                    : `오후 ${tM?.[0] - 12}시`}
+                </Time>
+                <WeatherIcon src={siv(rM?.[0], sM?.[0])} />
+                <Tempe>{tt?.[0]?.fcstValue}°</Tempe>
+              </Con>
+            </SwiperSlide>
+            <SwiperSlide>
+              <Con>
+                <Time>
+                  {tM?.[1] < "12"
+                    ? tM?.[1] > "09"
+                      ? `오전 ${tM?.[1]}시`
+                      : tM?.[1] === "00"
+                      ? `오전 12시`
+                      : `오전 ${tM?.[1].slice(1, 2)}시`
+                    : tM?.[1] === "12"
+                    ? `오후 12시`
+                    : `오후 ${tM?.[1] - 12}시`}
+                </Time>
+                <WeatherIcon src={siv(rM?.[1], sM?.[1])} />
+                <Tempe>{tt?.[1]?.fcstValue}°</Tempe>
+              </Con>
+            </SwiperSlide>
+            <SwiperSlide>
+              <Con>
+                <Time>
+                  {tM?.[2] < "12"
+                    ? tM?.[2] > "09"
+                      ? `오전 ${tM?.[2]}시`
+                      : tM?.[2] === "00"
+                      ? `오전 12시`
+                      : `오전 ${tM?.[2].slice(1, 2)}시`
+                    : tM?.[2] === "12"
+                    ? `오후 12시`
+                    : `오후 ${tM?.[2] - 12}시`}
+                </Time>
+                <WeatherIcon src={siv(rM?.[2], sM?.[2])} />
+                <Tempe>{tt?.[2]?.fcstValue}°</Tempe>
+              </Con>
+            </SwiperSlide>
+            <SwiperSlide>
+              <Con>
+                <Time>
+                  {tM?.[3] < "12"
+                    ? tM?.[3] > "09"
+                      ? `오전 ${tM?.[3]}시`
+                      : tM?.[3] === "00"
+                      ? `오전 12시`
+                      : `오전 ${tM?.[3].slice(1, 2)}시`
+                    : tM?.[3] === "12"
+                    ? `오후 12시`
+                    : `오후 ${tM?.[3] - 12}시`}
+                </Time>
+                <WeatherIcon src={siv(rM?.[3], sM?.[3])} />
+                <Tempe>{tt?.[3]?.fcstValue}°</Tempe>
+              </Con>
+            </SwiperSlide>
+            <SwiperSlide>
+              <Con>
+                <Time>
+                  {tM?.[4] < "12"
+                    ? tM?.[4] > "09"
+                      ? `오전 ${tM?.[4]}시`
+                      : tM?.[4] === "00"
+                      ? `오전 12시`
+                      : `오전 ${tM?.[4].slice(1, 2)}시`
+                    : tM?.[4] === "12"
+                    ? `오후 12시`
+                    : `오후 ${tM?.[4] - 12}시`}
+                </Time>
+                <WeatherIcon src={siv(rM?.[4], sM?.[4])} />
+                <Tempe>{tt?.[4]?.fcstValue}°</Tempe>
+              </Con>
+            </SwiperSlide>
+            <SwiperSlide>
+              <Con>
+                <Time>
+                  {tM?.[5] < "12"
+                    ? tM?.[5] > "09"
+                      ? `오전 ${tM?.[5]}시`
+                      : tM?.[5] === "00"
+                      ? `오전 12시`
+                      : `오전 ${tM?.[5].slice(1, 2)}시`
+                    : tM?.[5] === "12"
+                    ? `오후 12시`
+                    : `오후 ${tM?.[5] - 12}시`}
+                </Time>
+                <WeatherIcon src={siv(rM?.[5], sM?.[5])} />
+                <Tempe>{tt?.[5]?.fcstValue}°</Tempe>
+              </Con>
+            </SwiperSlide>
+          </>
+        ) : (
+          <Loading />
+        )}
       </Swiper>
     </Section02>
   );

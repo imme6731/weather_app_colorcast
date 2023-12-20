@@ -12,7 +12,7 @@ export const Main = styled.div`
   align-items: center;
 `;
 export const Location = styled.div`
-  font-size: 30px;
+  font-size: 26px;
   font-weight: 500;
   margin-bottom: 20px;
   line-height: 1.2;
@@ -24,12 +24,13 @@ export const Date = styled.p`
   margin-bottom: 30px;
 `;
 export const Pado = styled.div`
-  font-size: 120px;
+  font-size: 100px;
   color: lightblue;
   margin-bottom: 30px;
+  filter: drop-shadow(3px 3px 3px #979797);
 `;
 export const Percent = styled.h3`
-  font-size: 40px;
+  font-size: 36px;
   font-weight: 500;
   margin-bottom: 25px;
   & span {
@@ -71,6 +72,7 @@ export const Value = styled.div`
 export const Icon = styled.div`
   font-size: 24px;
   color: lightblue;
+  filter: drop-shadow(1px 1px 1px #979797);
 `;
 export const Per = styled.p`
   font-size: 18px;

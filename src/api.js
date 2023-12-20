@@ -72,10 +72,13 @@ export const getWeather = (x, y) =>
 // 단기예보
 
 export const reverseGeo = (x, y) =>
+  x &&
+  y &&
   fetch(
     `https://dapi.kakao.com/v2/local/geo/coord2regioncode.json?input_coord=WGS84&output_coord=WGS84&x=${y}&y=${x}`,
     geoOptions
   ).then((res) => res.json());
+
 // 역지오코딩 (지역주소 추출)
 
 export const getMidWeather = () =>

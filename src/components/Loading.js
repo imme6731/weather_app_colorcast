@@ -5,8 +5,9 @@ const SLoading = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 20px;
-  margin-bottom: 20px;
+  padding: 30px 0;
+  display: flex;
+  justify-content: center;
 `;
 
 export const Loading = () => {

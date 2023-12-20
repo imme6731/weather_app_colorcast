@@ -12,7 +12,7 @@ export const Main = styled.div`
   align-items: center;
 `;
 export const Location = styled.div`
-  font-size: 30px;
+  font-size: 26px;
   font-weight: 500;
   margin-bottom: 20px;
   line-height: 1.2;
@@ -25,10 +25,10 @@ export const Date = styled.p`
 `;
 export const Icon = styled.div`
   margin-bottom: 30px;
-  font-size: 140px;
+  font-size: 120px;
 `;
 export const Txt = styled.h3`
-  font-size: 30px;
+  font-size: 24px;
   font-weight: 500;
 `;
 export const Section01 = styled.div`

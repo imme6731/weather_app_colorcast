@@ -286,7 +286,8 @@ export const Home = () => {
   const BgColorVal = () => {
     if (nowRain === "0") {
       if (nowSky === "1") {
-        document.querySelector(`#root`).style.backgroundColor = "#ECBDBB";
+        document.querySelector(`#root`).style.backgroundColor =
+          "rgb(161 195 236)";
       } else if (nowSky === "3") {
         document.querySelector(`#root`).style.backgroundColor = "#BFACE0";
       } else if (nowSky === "4") {
@@ -301,7 +302,7 @@ export const Home = () => {
       ) {
         document.querySelector(`#root`).style.backgroundColor = "#A084CA";
       } else if (nowRain === "3" || nowRain === "7") {
-        document.querySelector(`#root`).style.backgroundColor = "#8D72E1";
+        document.querySelector(`#root`).style.backgroundColor = "#A084CA";
       }
     }
   };
@@ -328,39 +329,37 @@ export const Home = () => {
 
               <Section01>
                 <Air>
-                  <Icon>
-                    {dustIcon() ? (
-                      <FontAwesomeIcon icon={dustIcon()} />
-                    ) : (
-                      <Loading />
-                    )}
-                  </Icon>
-                  {dustTxt() ? (
-                    <TxtBox>
-                      <p>미세먼지</p>
-                      <h3>{dustTxt()}</h3>
-                    </TxtBox>
+                  {pm10Rank ? (
+                    <>
+                      <Icon>
+                        <FontAwesomeIcon icon={dustIcon()} />
+                      </Icon>
+
+                      <TxtBox>
+                        <p>미세먼지</p>
+                        <h3>{dustTxt()}</h3>
+                      </TxtBox>
+                    </>
                   ) : (
                     <Loading />
                   )}
                 </Air>
+
                 <Wind>
-                  {vecVal() ? (
-                    <Direction>
-                      <p>풍향</p>
-                      <h3>{vecVal()}풍</h3>
-                    </Direction>
-                  ) : (
-                    <Loading />
-                  )}
                   {wsd ? (
-                    <Speed>
-                      <p>풍속</p>
-                      <h3>
-                        {wsd}
-                        <span>m/s</span>
-                      </h3>
-                    </Speed>
+                    <>
+                      <Direction>
+                        <p>풍향</p>
+                        <h3>{vecVal()}풍</h3>
+                      </Direction>
+                      <Speed>
+                        <p>풍속</p>
+                        <h3>
+                          {wsd}
+                          <span>m/s</span>
+                        </h3>
+                      </Speed>
+                    </>
                   ) : (
                     <Loading />
                   )}

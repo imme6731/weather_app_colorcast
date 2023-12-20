@@ -16,10 +16,11 @@ body{
     font-family: 'Noto Sans KR', sans-serif;
     overflow-x: hidden;
     overflow-y: scroll;
+    background-color: #f2f2f2;
 
   
     & #root{
-        background-color: #EBC7E8;
+        background-color: #cfb5e5;
     }
 }
 

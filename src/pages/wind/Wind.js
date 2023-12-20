@@ -4,7 +4,7 @@ import { dfs_xy_conv } from "../../lib/grid";
 import {
   date,
   getUltraWeather,
-  hour,
+  hours,
   month,
   reverseGeo,
   year,
@@ -68,7 +68,7 @@ export const Wind = () => {
     })();
   }, [lat, lon, rs.x, rs.y]);
 
-  const dateVal = `${year}-${month}-${date} ${hour}:00`;
+  const dateVal = `${year}-${month}-${date} ${hours}:00`;
 
   const vecVal = (vec) => {
     if (vec === 0 || vec === 360) {
@@ -90,6 +90,10 @@ export const Wind = () => {
     }
   };
 
+  const BgColorVal = () => {
+    document.querySelector(`#root`).style.backgroundColor = "#cfb5e5";
+  };
+
   return (
     <>
       <PageTitle titlename={` | Wind`} />
@@ -98,7 +102,7 @@ export const Wind = () => {
       ) : (
         <>
           {
-            <Wrap>
+            <Wrap onLoad={BgColorVal()}>
               <Main>
                 {geo ? <Location>{geo.address_name}</Location> : <Loading />}
                 <Date>{dateVal}</Date>
@@ -107,15 +111,13 @@ export const Wind = () => {
                 </WindIcon>
                 <ValWrap>
                   {vec ? (
-                    <MDirection>{vecVal(vec?.[0]?.fcstValue)}풍</MDirection>
-                  ) : (
-                    <Loading />
-                  )}
-                  {wsd ? (
-                    <MSpeed>
-                      {wsd?.[0]?.fcstValue}
-                      <span>m/s</span>
-                    </MSpeed>
+                    <>
+                      <MDirection>{vecVal(vec?.[0]?.fcstValue)}풍</MDirection>
+                      <MSpeed>
+                        {wsd?.[0]?.fcstValue}
+                        <span>m/s</span>
+                      </MSpeed>
+                    </>
                   ) : (
                     <Loading />
                   )}

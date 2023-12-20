@@ -4,7 +4,7 @@ import { dfs_xy_conv } from "../../lib/grid";
 import {
   date,
   getUltraWeather,
-  hour,
+  hours,
   month,
   reverseGeo,
   year,
@@ -59,7 +59,11 @@ export const Humidity = () => {
     })();
   }, [lat, lon, rs.x, rs.y]);
 
-  const dateVal = `${year}-${month}-${date} ${hour}:00`;
+  const dateVal = `${year}-${month}-${date} ${hours}:00`;
+
+  const BgColorVal = () => {
+    document.querySelector(`#root`).style.backgroundColor = "#cfb5e5";
+  };
 
   return (
     <>
@@ -69,7 +73,7 @@ export const Humidity = () => {
       ) : (
         <>
           {
-            <Wrap>
+            <Wrap onLoad={BgColorVal()}>
               <Main>
                 {geo ? <Location>{geo.address_name}</Location> : <Loading />}
                 <Date>{dateVal}</Date>

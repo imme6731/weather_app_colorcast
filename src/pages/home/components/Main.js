@@ -15,14 +15,20 @@ export const Main = ({ gg, sV, nR, nS, siv, tt, tX, tN }) => {
     <SMain>
       {gg ? <Location>{gg.address_name}</Location> : <Loading />}
 
-      {nR ? <Sky>{sV(nR, nS)}</Sky> : <Loading />}
-      {nR ? <SkyIcon src={siv(nR, nS)} /> : <Loading />}
-      {tt ? <Temp>{tt?.[0]?.fcstValue}°</Temp> : <Loading />}
-      {tX ? (
-        <TempUpDown>
-          <UpTemp>최고 : {tX}°</UpTemp>
-          <DownTemp>최저 : {tN}°</DownTemp>
-        </TempUpDown>
+      {nR ? (
+        <>
+          <Sky>{sV(nR, nS)}</Sky>
+          <SkyIcon src={siv(nR, nS)} />
+          <Temp>{tt?.[0]?.fcstValue}°</Temp>
+          {tN ? (
+            <TempUpDown>
+              <UpTemp>최고 : {tX}°</UpTemp>
+              <DownTemp>최저 : {tN}°</DownTemp>
+            </TempUpDown>
+          ) : (
+            <Loading />
+          )}
+        </>
       ) : (
         <Loading />
       )}

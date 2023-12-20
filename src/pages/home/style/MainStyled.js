@@ -12,7 +12,7 @@ export const SMain = styled.div`
   align-items: center;
 `;
 export const Location = styled.h3`
-  font-size: 30px;
+  font-size: 26px;
   font-weight: 500;
   margin-bottom: 20px;
   line-height: 1.2;
@@ -22,21 +22,22 @@ export const Location = styled.h3`
 export const Sky = styled.p`
   font-size: 20px;
   font-weight: 400;
-  margin-bottom: 20px;
-`;
-export const SkyIcon = styled.img`
-  width: 140px;
   margin-bottom: 30px;
 `;
+export const SkyIcon = styled.img`
+  width: 80px;
+  margin-bottom: 30px;
+  filter: drop-shadow(3px 3px 3px #979797);
+`;
 export const Temp = styled.h3`
-  font-size: 40px;
+  font-size: 36px;
   font-weight: 500;
   margin-bottom: 25px;
 `;
 export const TempUpDown = styled.div`
   display: flex;
   & p {
-    font-size: 22px;
+    font-size: 20px;
     font-weight: 400;
   }
 `;

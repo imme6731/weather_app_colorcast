@@ -13,12 +13,13 @@ export const Air = styled.div`
   background-color: rgba(256, 256, 256, 0.4);
   border-radius: 15px;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
 `;
 export const Icon = styled.div`
   font-size: 46px;
   color: #707070;
+  margin-right: 20px;
 `;
 export const TxtBox = styled.div`
   text-align: center;

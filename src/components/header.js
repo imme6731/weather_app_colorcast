@@ -30,13 +30,14 @@ const SWrap = styled.div`
   margin-left: -200px;
   background-color: white;
   z-index: 20;
+  filter: drop-shadow(100px 0 0 rgba(0, 0, 0, 0.5));
   @media screen and (max-width: 400px) {
     margin-left: -50%;
   }
 `;
 const SHeader = styled.div`
   width: 100%;
-  background-color: #ebc7e8;
+  background-color: #cfb5e5;
 `;
 const LogoWrap = styled.div`
   width: 100%;

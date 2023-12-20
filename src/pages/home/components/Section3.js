@@ -32,6 +32,7 @@ const Day = styled.div`
 `;
 const SIcon = styled.img`
   width: 40px;
+  filter: drop-shadow(1px 1px 1px #979797);
 `;
 const TEMP = styled.div`
   width: 80px;
@@ -80,90 +81,74 @@ export const Section3 = ({ mI, mS, mm, mx, mn, siv, a1p, a1s, a2p, a2s }) => {
         <h3>일별 예보</h3>
       </Title>
       <ConWrap>
-        <Con>
-          <Day>{dayOfWeek(1)}</Day>
-          {a1p ? <SIcon src={siv(a1p, a1s)} /> : <Loading />}
-          {mx ? (
-            <TEMP>
-              <Max>{Math.round(mx?.[1]?.fcstValue)}°</Max>
-              <Min>{Math.round(mn?.[1]?.fcstValue)}°</Min>
-            </TEMP>
-          ) : (
-            <Loading />
-          )}
-        </Con>
-        <Con>
-          <Day>{dayOfWeek(2)}</Day>
-          {a1p ? <SIcon src={siv(a2p, a2s)} /> : <Loading />}
-          {mx ? (
-            <TEMP>
-              <Max>{Math.round(mx?.[2]?.fcstValue)}°</Max>
-              <Min>{Math.round(mn?.[2]?.fcstValue)}°</Min>
-            </TEMP>
-          ) : (
-            <Loading />
-          )}
-        </Con>
-        <Con>
-          <Day>{dayOfWeek(3)}</Day>
-          {a1p ? <SIcon src={mI(mS?.wf3Pm)} /> : <Loading />}
-          {mm ? (
-            <TEMP>
-              <Max>{mm?.taMax3}°</Max>
-              <Min>{mm?.taMin3}°</Min>
-            </TEMP>
-          ) : (
-            <Loading />
-          )}
-        </Con>
-        <Con>
-          <Day>{dayOfWeek(4)}</Day>
-          {a1p ? <SIcon src={mI(mS?.wf4Pm)} /> : <Loading />}
-          {mm ? (
-            <TEMP>
-              <Max>{mm?.taMax4}°</Max>
-              <Min>{mm?.taMin4}°</Min>
-            </TEMP>
-          ) : (
-            <Loading />
-          )}
-        </Con>
-        <Con>
-          <Day>{dayOfWeek(5)}</Day>
-          {a1p ? <SIcon src={mI(mS?.wf5Pm)} /> : <Loading />}
-          {mm ? (
-            <TEMP>
-              <Max>{mm?.taMax5}°</Max>
-              <Min>{mm?.taMin5}°</Min>
-            </TEMP>
-          ) : (
-            <Loading />
-          )}
-        </Con>
-        <Con>
-          <Day>{dayOfWeek(6)}</Day>
-          {a1p ? <SIcon src={mI(mS?.wf6Pm)} /> : <Loading />}
-          {mm ? (
-            <TEMP>
-              <Max>{mm?.taMax6}°</Max>
-              <Min>{mm?.taMin6}°</Min>
-            </TEMP>
-          ) : (
-            <Loading />
-          )}
-        </Con>
-        <Con>
-          <Day>{dayOfWeek(7)}</Day>
-          {a1p ? <SIcon src={mI(mS?.wf7Pm)} /> : <Loading />}
-          {mm ? (
-            <TEMP>
-              <Max>{mm?.taMax7}°</Max>
-              <Min>{mm?.taMin7}°</Min>
-            </TEMP>
-          ) : (
-            <Loading />
-          )}
-        </Con>
+        {mx ? (
+          <>
+            <Con>
+              <Day>{dayOfWeek(1)}</Day>
+              <SIcon src={siv(a1p, a1s)} />
+              <TEMP>
+                <Max>{Math.round(mx?.[1]?.fcstValue)}°</Max>
+                <Min>{Math.round(mn?.[1]?.fcstValue)}°</Min>
+              </TEMP>
+            </Con>
+            <Con>
+              <Day>{dayOfWeek(2)}</Day>
+              <SIcon src={siv(a2p, a2s)} />
+              <TEMP>
+                <Max>{Math.round(mx?.[2]?.fcstValue)}°</Max>
+                <Min>{Math.round(mn?.[2]?.fcstValue)}°</Min>
+              </TEMP>
+            </Con>
+            {mS ? (
+              <>
+                <Con>
+                  <Day>{dayOfWeek(3)}</Day>
+                  <SIcon src={mI(mS?.wf3Pm)} />
+                  <TEMP>
+                    <Max>{mm?.taMax3}°</Max>
+                    <Min>{mm?.taMin3}°</Min>
+                  </TEMP>
+                </Con>
+                <Con>
+                  <Day>{dayOfWeek(4)}</Day>
+                  <SIcon src={mI(mS?.wf4Pm)} />
+                  <TEMP>
+                    <Max>{mm?.taMax4}°</Max>
+                    <Min>{mm?.taMin4}°</Min>
+                  </TEMP>
+                </Con>
+                <Con>
+                  <Day>{dayOfWeek(5)}</Day>
+                  <SIcon src={mI(mS?.wf5Pm)} />
+                  <TEMP>
+                    <Max>{mm?.taMax5}°</Max>
+                    <Min>{mm?.taMin5}°</Min>
+                  </TEMP>
+                </Con>
+                <Con>
+                  <Day>{dayOfWeek(6)}</Day>
+                  <SIcon src={mI(mS?.wf6Pm)} />
+                  <TEMP>
+                    <Max>{mm?.taMax6}°</Max>
+                    <Min>{mm?.taMin6}°</Min>
+                  </TEMP>
+                </Con>
+                <Con>
+                  <Day>{dayOfWeek(7)}</Day>
+                  <SIcon src={mI(mS?.wf7Pm)} />
+                  <TEMP>
+                    <Max>{mm?.taMax7}°</Max>
+                    <Min>{mm?.taMin7}°</Min>
+                  </TEMP>
+                </Con>
+              </>
+            ) : (
+              <Loading />
+            )}
+          </>
+        ) : (
+          <Loading />
+        )}
       </ConWrap>
     </Section03>
   );
