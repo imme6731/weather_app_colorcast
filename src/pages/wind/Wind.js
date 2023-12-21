@@ -47,8 +47,14 @@ export const Wind = () => {
       try {
         setIsLoading(false);
 
-        const { documents } = await reverseGeo(lat, lon);
-        setGeo(documents?.[0]);
+        const geoData = () => {
+          if (lat && lon) {
+            return reverseGeo(lat, lon);
+          }
+        };
+
+        const geoRes = await geoData();
+        setGeo(geoRes?.documents?.[0]);
 
         // 역지오코딩
 

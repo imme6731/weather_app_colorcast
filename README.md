@@ -105,4 +105,4 @@
 - useCurrentLocation이 처음 랜더링 될때 default 값으로 호출됨 => 디폴트값 없애고 로딩 넣기
 - 랜더링할때마다 img태그 테두리 생김 => height 값 넣어서 그런거였음
 - 날씨 값에 따라 root 배경색 바꾸고 싶은데 어떻게 해야할지... => querySelector 이용하여 root 선택후 배경색 지정하는 함수 만들어 활용!!
-- 랜더링 시 카카오 api 400 error 뜸
+- 랜더링 시 카카오 api 400 error 뜸 => return 되는 컴포넌트에서 조건문 작업

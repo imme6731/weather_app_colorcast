@@ -73,13 +73,19 @@ export const Home = () => {
       try {
         setIsLoading(false);
 
-        const { documents } = await reverseGeo(lat, lon);
-        setGeo(documents?.[0]);
+        const geoData = () => {
+          if (lat && lon) {
+            return reverseGeo(lat, lon);
+          }
+        };
+
+        const geoRes = await geoData();
+        setGeo(geoRes?.documents?.[0]);
 
         // 역지오코딩
 
         const { response: tmVal } = await getTmDust(
-          documents?.[0]?.region_3depth_name
+          geoRes?.documents?.[0]?.region_3depth_name
         );
         setTmRes(tmVal?.body?.items?.[0]);
 
