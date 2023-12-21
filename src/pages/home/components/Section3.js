@@ -31,7 +31,7 @@ const Day = styled.div`
   color: #343434;
 `;
 const SIcon = styled.img`
-  width: 40px;
+  width: 36px;
   filter: drop-shadow(1px 1px 1px #979797);
 `;
 const TEMP = styled.div`

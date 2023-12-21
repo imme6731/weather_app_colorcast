@@ -14,23 +14,23 @@ export const Main = styled.div`
 export const Location = styled.div`
   font-size: 26px;
   font-weight: 500;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
   line-height: 1.2;
   text-align: center;
   word-break: keep-all;
 `;
 export const Date = styled.p`
   font-size: 16px;
-  margin-bottom: 30px;
+  margin-bottom: 40px;
 `;
 export const Pado = styled.div`
-  font-size: 100px;
+  font-size: 80px;
   color: lightblue;
-  margin-bottom: 30px;
+  margin-bottom: 40px;
   filter: drop-shadow(3px 3px 3px #979797);
 `;
 export const Percent = styled.h3`
-  font-size: 36px;
+  font-size: 42px;
   font-weight: 500;
   margin-bottom: 25px;
   & span {
@@ -77,5 +77,5 @@ export const Icon = styled.div`
 export const Per = styled.p`
   font-size: 18px;
   color: #343434;
-  margin-left: 10px;
+  margin-left: 15px;
 `;

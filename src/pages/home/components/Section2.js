@@ -26,8 +26,8 @@ const Time = styled.p`
   margin-bottom: 15px;
 `;
 const WeatherIcon = styled.img`
-  width: 40px;
-  margin-bottom: 15px;
+  width: 36px;
+  margin-bottom: 20px;
   filter: drop-shadow(1px 1px 1px #979797);
 `;
 const Tempe = styled.h3`

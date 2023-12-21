@@ -14,7 +14,7 @@ export const SMain = styled.div`
 export const Location = styled.h3`
   font-size: 26px;
   font-weight: 500;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
   line-height: 1.2;
   text-align: center;
   word-break: keep-all;
@@ -22,15 +22,15 @@ export const Location = styled.h3`
 export const Sky = styled.p`
   font-size: 20px;
   font-weight: 400;
-  margin-bottom: 30px;
+  margin-bottom: 40px;
 `;
 export const SkyIcon = styled.img`
   width: 80px;
-  margin-bottom: 30px;
+  margin-bottom: 40px;
   filter: drop-shadow(3px 3px 3px #979797);
 `;
 export const Temp = styled.h3`
-  font-size: 36px;
+  font-size: 42px;
   font-weight: 500;
   margin-bottom: 25px;
 `;

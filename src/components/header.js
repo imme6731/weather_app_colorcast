@@ -48,9 +48,11 @@ const LogoWrap = styled.div`
   position: relative;
 `;
 const Logo = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  & a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 `;
 const LogoImg = styled.img`
   width: 120px;
@@ -133,8 +135,10 @@ export const Header = () => {
           <SHeader>
             <LogoWrap>
               <Logo>
-                <LogoImg src={LogoPic} />
-                <LogoTxt>ColorCast</LogoTxt>
+                <Link to={"/"}>
+                  <LogoImg src={LogoPic} />
+                  <LogoTxt>ColorCast</LogoTxt>
+                </Link>
               </Logo>
             </LogoWrap>
             <Button

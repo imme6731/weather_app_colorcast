@@ -14,7 +14,7 @@ export const Main = styled.div`
 export const Location = styled.div`
   font-size: 26px;
   font-weight: 500;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
   line-height: 1.2;
   text-align: center;
   word-break: keep-all;
@@ -24,7 +24,7 @@ export const Date = styled.p`
   margin-bottom: 40px;
 `;
 export const WindIcon = styled.div`
-  font-size: 100px;
+  font-size: 80px;
   color: #8db0f7;
   margin-bottom: 40px;
   filter: drop-shadow(3px 3px 3px #979797);
@@ -35,15 +35,15 @@ export const ValWrap = styled.div`
   margin-bottom: 25px;
 `;
 export const MDirection = styled.h3`
-  font-size: 26px;
+  font-size: 32px;
   font-weight: 500;
 `;
 export const MSpeed = styled.h3`
-  font-size: 26px;
+  font-size: 32px;
   font-weight: 500;
   margin-left: 20px;
   & span {
-    font-size: 18px;
+    font-size: 20px;
   }
 `;
 export const Section01 = styled.div`
@@ -79,14 +79,14 @@ export const Value = styled.div`
   align-items: center;
 `;
 export const Icon = styled.div`
-  font-size: 24px;
+  font-size: 20px;
   color: #8db0f7;
   filter: drop-shadow(1px 1px 1px #979797);
 `;
 export const Direction = styled.p`
   font-size: 18px;
   color: #343434;
-  margin-left: 10px;
+  margin-left: 15px;
 `;
 export const Speed = styled.p`
   font-size: 18px;

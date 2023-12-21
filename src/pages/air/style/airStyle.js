@@ -14,21 +14,21 @@ export const Main = styled.div`
 export const Location = styled.div`
   font-size: 26px;
   font-weight: 500;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
   line-height: 1.2;
   text-align: center;
   word-break: keep-all;
 `;
 export const Date = styled.p`
   font-size: 16px;
-  margin-bottom: 30px;
+  margin-bottom: 40px;
 `;
 export const Icon = styled.div`
-  margin-bottom: 30px;
-  font-size: 120px;
+  margin-bottom: 40px;
+  font-size: 100px;
 `;
 export const Txt = styled.h3`
-  font-size: 24px;
+  font-size: 36px;
   font-weight: 500;
 `;
 export const Section01 = styled.div`

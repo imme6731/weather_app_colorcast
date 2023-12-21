@@ -17,7 +17,7 @@ export const Air = styled.div`
   align-items: center;
 `;
 export const Icon = styled.div`
-  font-size: 46px;
+  font-size: 40px;
   color: #707070;
   margin-right: 20px;
 `;
