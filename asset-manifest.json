@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/weather_app_colorcast/static/css/main.900c1a46.css",
+    "main.js": "/weather_app_colorcast/static/js/main.a6d555dd.js",
+    "static/media/Logo.png": "/weather_app_colorcast/static/media/Logo.850b927b62fdfbb5fb46.png",
+    "static/media/home.png": "/weather_app_colorcast/static/media/home.bb40b0edfe355a320b2e.png",
+    "static/media/humidity.png": "/weather_app_colorcast/static/media/humidity.6b3cb7bce0e556f4e063.png",
+    "static/media/air.png": "/weather_app_colorcast/static/media/air.d67d5f79a05cc48b73d5.png",
+    "static/media/raindrop.png": "/weather_app_colorcast/static/media/raindrop.fec7f3b483fa50f64dc4.png",
+    "static/media/sun_2.png": "/weather_app_colorcast/static/media/sun_2.513d2aa32b98ce66140e.png",
+    "static/media/darkcloud.png": "/weather_app_colorcast/static/media/darkcloud.ae5a043b2388b233934a.png",
+    "static/media/clouds.png": "/weather_app_colorcast/static/media/clouds.f07fbe9ca83eedb20cc0.png",
+    "static/media/wind.png": "/weather_app_colorcast/static/media/wind.ecccc8ee2406c33d2f64.png",
+    "static/media/404error.png": "/weather_app_colorcast/static/media/404error.ab62a452f5e05bfb43c6.png",
+    "index.html": "/weather_app_colorcast/index.html",
+    "main.900c1a46.css.map": "/weather_app_colorcast/static/css/main.900c1a46.css.map",
+    "main.a6d555dd.js.map": "/weather_app_colorcast/static/js/main.a6d555dd.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.900c1a46.css",
+    "static/js/main.a6d555dd.js"
+  ]
+}
