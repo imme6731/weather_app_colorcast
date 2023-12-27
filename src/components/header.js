@@ -134,7 +134,7 @@ export const Header = () => {
         <SWrap>
           <SHeader>
             <LogoWrap>
-              <Logo>
+              <Logo onClick={onClose}>
                 <Link to={"/"}>
                   <LogoImg src={LogoPic} />
                   <LogoTxt>ColorCast</LogoTxt>
