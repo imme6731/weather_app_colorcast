@@ -83,22 +83,30 @@ export const Section3 = ({ mI, mS, mm, mx, mn, siv, a1p, a1s, a2p, a2s }) => {
       <ConWrap>
         {mx ? (
           <>
-            <Con>
-              <Day>{dayOfWeek(1)}</Day>
-              <SIcon src={siv(a1p, a1s)} />
-              <TEMP>
-                <Max>{Math.round(mx?.[1]?.fcstValue)}°</Max>
-                <Min>{Math.round(mn?.[1]?.fcstValue)}°</Min>
-              </TEMP>
-            </Con>
-            <Con>
-              <Day>{dayOfWeek(2)}</Day>
-              <SIcon src={siv(a2p, a2s)} />
-              <TEMP>
-                <Max>{Math.round(mx?.[2]?.fcstValue)}°</Max>
-                <Min>{Math.round(mn?.[2]?.fcstValue)}°</Min>
-              </TEMP>
-            </Con>
+            {a2p && (
+              <>
+                {a1p && (
+                  <Con>
+                    <Day>{dayOfWeek(1)}</Day>
+                    <SIcon src={siv(a1p, a1s)} />
+                    <TEMP>
+                      <Max>{Math.round(mx?.[1]?.fcstValue)}°</Max>
+                      <Min>{Math.round(mn?.[1]?.fcstValue)}°</Min>
+                    </TEMP>
+                  </Con>
+                )}
+
+                <Con>
+                  <Day>{dayOfWeek(2)}</Day>
+                  <SIcon src={siv(a2p, a2s)} />
+                  <TEMP>
+                    <Max>{Math.round(mx?.[2]?.fcstValue)}°</Max>
+                    <Min>{Math.round(mn?.[2]?.fcstValue)}°</Min>
+                  </TEMP>
+                </Con>
+              </>
+            )}
+
             {mS ? (
               <>
                 <Con>
