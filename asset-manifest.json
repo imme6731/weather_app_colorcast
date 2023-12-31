@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/weather_app_colorcast/static/css/main.900c1a46.css",
-    "main.js": "/weather_app_colorcast/static/js/main.19e0e470.js",
+    "main.js": "/weather_app_colorcast/static/js/main.90afdc8b.js",
     "static/media/Logo.png": "/weather_app_colorcast/static/media/Logo.850b927b62fdfbb5fb46.png",
     "static/media/home.png": "/weather_app_colorcast/static/media/home.bb40b0edfe355a320b2e.png",
     "static/media/humidity.png": "/weather_app_colorcast/static/media/humidity.6b3cb7bce0e556f4e063.png",
@@ -14,10 +14,10 @@
     "static/media/404error.png": "/weather_app_colorcast/static/media/404error.ab62a452f5e05bfb43c6.png",
     "index.html": "/weather_app_colorcast/index.html",
     "main.900c1a46.css.map": "/weather_app_colorcast/static/css/main.900c1a46.css.map",
-    "main.19e0e470.js.map": "/weather_app_colorcast/static/js/main.19e0e470.js.map"
+    "main.90afdc8b.js.map": "/weather_app_colorcast/static/js/main.90afdc8b.js.map"
   },
   "entrypoints": [
     "static/css/main.900c1a46.css",
-    "static/js/main.19e0e470.js"
+    "static/js/main.90afdc8b.js"
   ]
 }
