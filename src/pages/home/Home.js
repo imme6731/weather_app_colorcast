@@ -98,6 +98,7 @@ export const Home = () => {
         // 대기오염
 
         const { response: today } = await getUltraWeather(rs.x, rs.y);
+
         const todaySky = today?.body?.items?.item
           .filter((x) => x.category === "SKY")
           .map((x) => x);

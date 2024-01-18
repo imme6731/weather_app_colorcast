@@ -3,8 +3,6 @@ import fetch from "node-fetch";
 const serviceKey =
   "TG0AN8qwEJrLOC3O0%2BbF3Hrhwx2ZyXiADCIm1%2Fp0n0yguVZ4Vkdj3346OW0GQiqj3xXzyz0jfxTQhlcLER8USA%3D%3D";
 
-const baseUrl = "http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0";
-
 const options = {
   headers: {
     Accept: "application / json",
@@ -23,13 +21,20 @@ const geoOptions = {
 export const now = new Date();
 export const year = now.getFullYear().toString();
 export const month = now.getMonth() + 1;
+const monthRes = () => {
+  if (month < 10) {
+    return `0${month}`;
+  } else {
+    return month;
+  }
+};
 export const date = now.getDate();
 export const hour = now.getHours();
 export const hours = ("0" + now.getHours()).slice(-2);
 export const minutes = ("0" + now.getMinutes()).slice(-2);
-export const base_date = year + month + date;
-export const after1day = year + month + (date + 1);
-export const after2day = year + month + (date + 2);
+export const base_date = year + monthRes() + date;
+export const after1day = year + monthRes() + (date + 1);
+export const after2day = year + monthRes() + (date + 2);
 
 const time = () => {
   if (minutes > "30") {
@@ -43,9 +48,9 @@ const time = () => {
 
 export const tmFc = () => {
   if (now.getHours() < "6") {
-    return year + month + (date - 1);
+    return year + monthRes() + (date - 1);
   } else if (now.getHours() >= "6") {
-    return year + month + date;
+    return year + monthRes() + date;
   }
 };
 
@@ -59,14 +64,14 @@ export const tmFcPre = () => {
 
 export const getUltraWeather = (x, y) =>
   fetch(
-    `${baseUrl}/getUltraSrtFcst?serviceKey=${serviceKey}&pageNo=1&numOfRows=1000&dataType=JSON&base_date=${base_date}&base_time=${time()}&nx=${x}&ny=${y}`,
+    `http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getUltraSrtFcst?serviceKey=${serviceKey}&pageNo=1&numOfRows=1000&dataType=JSON&base_date=${base_date}&base_time=${time()}&nx=${x}&ny=${y}`,
     options
   ).then((res) => res.json());
 //초단기예보
 
 export const getWeather = (x, y) =>
   fetch(
-    `${baseUrl}/getVilageFcst?serviceKey=${serviceKey}&pageNo=1&numOfRows=1000&dataType=JSON&base_date=${tmFc()}&base_time=0200&nx=${x}&ny=${y}`,
+    `http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst?serviceKey=${serviceKey}&pageNo=1&numOfRows=1000&dataType=JSON&base_date=${tmFc()}&base_time=0200&nx=${x}&ny=${y}`,
     options
   ).then((res) => res.json());
 // 단기예보
